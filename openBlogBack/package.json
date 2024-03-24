@@ -1,0 +1,27 @@
+{
+  "name": "openblogback",
+  "version": "1.0.0",
+  "description": "blog api",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "frédéric macabiau",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.1",
+    "express-openapi-validator": "^5.1.6",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.2",
+    "node-cron": "^3.0.3",
+    "sequelize": "^6.37.1",
+    "sqlite3": "^5.1.7"
+  }
+}
