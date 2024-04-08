@@ -8,6 +8,7 @@ import { PostsComponent } from './posts/posts.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentsDetailComponent } from './comments-detail/comments-detail.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CommentsDetailComponent } from './comments-detail/comments-detail.compo
     PostsComponent,
     PostListComponent,
     CommentsListComponent,
-    CommentsDetailComponent
+    CommentsDetailComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

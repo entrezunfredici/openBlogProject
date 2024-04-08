@@ -7,7 +7,12 @@ module.exports = (instance) => {
             primaryKey: true,
             autoIncrement: true
         },
-        username: {
+        userPhoto: {
+            type: dataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'https://www.w3schools.com/howto/img_avatar.png'
+        },
+        userName: {
             type: dataTypes.STRING,
             allowNull: false
         },
@@ -26,6 +31,9 @@ module.exports = (instance) => {
         followers: {
             type: dataTypes.INTEGER,
             defaultValue: 0
+        },
+        description: {
+            type: dataTypes.TEXT
         },
         role: {
             type: dataTypes.STRING,

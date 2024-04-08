@@ -1,0 +1,21 @@
+.body{
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+}
+.sidebar{
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    margin-left: 80%;
+    margin-right: 0;
+}
+.post_list{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    margin-right: 20%;
+    margin-left: 0;
+}

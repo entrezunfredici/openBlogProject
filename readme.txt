@@ -8,3 +8,6 @@ you find the figma of this project here:
 
 for find a documentation of this project:
 → https://1drv.ms/w/s!AuLuxaFrfigQo4BJgRSoXN8W05kWKA?e=iFWadu
+
+for find the trello
+→ 
