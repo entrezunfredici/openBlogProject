@@ -22,10 +22,11 @@ exports.getSubjects = async() => {
 }
 
 exports.createSubject = async(name) => {
-    if(this.getSubjectByName(name)) {
-        throw new BadRequest('subject already exists')
-    }else{
-        return subjects.create(name)
+    const existingSubject = await this.getSubjectByName(name);
+    if(existingSubject) {
+        throw new BadRequest('Subject already exists');
+    } else {
+        return subjects.create({ name: name });
     }
 }
 

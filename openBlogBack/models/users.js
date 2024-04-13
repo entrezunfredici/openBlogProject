@@ -1,42 +1,42 @@
-const { dataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize'); // Utiliser DataTypes au lieu de DataTypes
 
 module.exports = (instance) => {
     return instance.define('users', {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         userPhoto: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 'https://www.w3schools.com/howto/img_avatar.png'
         },
         userName: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         email: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         password: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         nbPosts: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             defaultValue: 0
         },
         followers: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             defaultValue: 0
         },
         description: {
-            type: dataTypes.TEXT
+            type: DataTypes.TEXT
         },
         role: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             defaultValue: 'user'
         }
     })
