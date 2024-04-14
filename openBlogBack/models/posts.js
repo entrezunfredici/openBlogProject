@@ -7,7 +7,7 @@ module.exports = (instance) => {
             primaryKey: true,
             autoIncrement: true
         },
-        creatorId: {
+        authorId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
