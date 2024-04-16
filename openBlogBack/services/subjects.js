@@ -30,6 +30,10 @@ exports.createSubject = async(name) => {
     }
 }
 
+exports.incrementNbPost = async(subjectId) => {
+    return subjects.increment('nbPosts', { where: { id: subjectId } });
+}
+
 exports.deleteSubject = async(name) => {
     return subjects.destroy({
         where: {
