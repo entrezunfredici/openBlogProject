@@ -3,7 +3,7 @@ postsController = require('../controllers/postsController')
 
 router.get('/all', postsController.getPosts)
 router.get('/id=:id', postsController.getPostById)
-router.get('/authorId=:authorid', postsController.getPostsByAuthorId)
+router.get('/authorId=:id', postsController.getPostsByAuthorId)
 router.get('/title=:title', postsController.getPostsByTitle)
 router.post('/create', postsController.createPost)
 router.post('/edit', postsController.editPost)
