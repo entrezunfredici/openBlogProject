@@ -10,4 +10,4 @@ for find a documentation of this project:
 → https://1drv.ms/b/s!AuLuxaFrfigQqpxhanSXwPO7Tpej3A?e=kaURJf
 
 for find the trello
-→ 
+→ https://trello.com/w/openblog1/home
