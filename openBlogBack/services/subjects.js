@@ -24,7 +24,7 @@ exports.getSubjects = async() => {
 exports.createSubject = async(name) => {
     const existingSubject = await this.getSubjectByName(name);
     if(existingSubject) {
-        throw new BadRequest('Subject already exists');
+        return existingSubject;
     } else {
         return subjects.create({ name: name });
     }
