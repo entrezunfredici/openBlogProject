@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+.backgrounds-colors{
+    $bgBlue: #007bff;
+    $bgDarkBlue: #000080;
+    $bgRed: #dc3545;
+    $bgGreen: #28a745;
+    $bgYellow: #ffc107;
+    $bgOrange: #fd7e14;
+    $bgPurple: #6f42c1;
+    $bgPink: #e83e8c;
+    $bgTeal: #20c997;
+    $bgCyan: #17a2b8;
+    $bgWhite: #fff;
+    $bgBlack: #000;
+    $bgGray: #6c757d;
+    $bgGrayDark: #343a40;
+    $bgPrimary: #007bff;
+    $bgSecondary: #6c757d;
+    $bgSuccess: #28a745;
+    $bgInfo: #17a2b8;
+    $bgWarning: #ffc107;
+    $bgDanger: #dc3545;
+    $bgLight: #f8f9fa;
+    $bgDark: #303030;
+}
+
+.fonts-colors{
+    $fontBlue: #007bff;
+    $fontRed: #dc3545;
+    $fontGreen: #28a745;
+    $fontYellow: #ffc107;
+    $fontOrange: #fd7e14;
+    $fontPurple: #6f42c1;
+    $fontPink: #e83e8c;
+    $fontTeal: #20c997;
+    $fontCyan: #17a2b8;
+    $fontWhite: #fff;
+    $fontBlack: #000;
+    $fontGray: #6c757d;
+    $fontGrayDark: #343a40;
+    $fontPrimary: #007bff;
+    $fontSecondary: #6c757d;
+    $fontSuccess: #28a745;
+    $fontInfo: #17a2b8;
+    $fontWarning: #ffc107;
+    $fontDanger: #dc3545;
+    $fontLight: #f8f9fa;
+    $fontDark: #343a40;
+}
+
+.border-colors{
+    $borderBlue: #007bff;
+    $borderRed: #dc3545;
+    $borderGreen: #28a745;
+    $borderYellow: #ffc107;
+    $borderOrange: #fd7e14;
+    $borderPurple: #6f42c1;
+    $borderPink: #e83e8c;
+    $borderTeal: #20c997;
+    $borderCyan: #17a2b8;
+    $borderWhite: #fff;
+    $borderBlack: #000;
+    $borderGray: #6c757d;
+    $borderGrayDark: #343a40;
+    $borderPrimary: #007bff;
+    $borderSecondary: #6c757d;
+    $borderSuccess: #28a745;
+    $borderInfo: #17a2b8;
+    $borderWarning: #ffc107;
+    $borderDanger: #dc3545;
+    $borderLight: #dbe4eb;
+    $borderDark: #303030;
+}
+
+// body{
+//     background-color: $bgDarkBlue;
+// }
