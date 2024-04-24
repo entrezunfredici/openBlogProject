@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './posts-writer.component.scss'
 })
 export class PostsWriterComponent {
-
+  
 }

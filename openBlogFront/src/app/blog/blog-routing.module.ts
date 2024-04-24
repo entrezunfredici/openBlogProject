@@ -17,12 +17,12 @@ const routes: Routes = [
             {
                 path: '',
                 component: PostListComponent,
-                outlet: 'blogrouter'
+                outlet: 'blogZoneOutlet'
             },
             {
                 path: 'new',
                 component: PostsWriterComponent,
-                outlet: 'blogrouter'
+                outlet: 'blogZoneOutlet'
             }
         ]
     }
