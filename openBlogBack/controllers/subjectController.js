@@ -23,6 +23,27 @@ exports.getSubjectById = async (req, res, next) => {
     }
 }
 
+exports.getSubjectByName = async (req, res, next) => { 
+    try {
+        const subject = await subjects.getSubjectByName(req.params.name)
+        if (!subject) {
+            return next(createError(404, 'Subject not found'))
+        }
+        res.json(subject)
+    } catch (e) {
+        next(new ServerError('Error when getting subject by name: ', e.message))
+    }
+}
+
+exports.incrementNbPost = async (req, res, next) => {
+    try {
+        const subject = await subjects.incrementNbPost(req.params.id)
+        res.json({ message: 'NbPosts incremented' });
+    } catch (e) {
+        next(new ServerError('Error when incrementing nbPost: ', e.message))
+    }
+}
+
 exports.createSubject = async (req, res, next) => {
     try {
         const subject = await subjects.createSubject(req.body.name)
@@ -41,14 +62,3 @@ exports.deleteSubject = async (req, res, next) => {
     }
 }
 
-exports.getSubjectByName = async (req, res, next) => { 
-    try {
-        const subject = await subjects.getSubjectByName(req.params.name)
-        if (!subject) {
-            return next(createError(404, 'Subject not found'))
-        }
-        res.json(subject)
-    } catch (e) {
-        next(new ServerError('Error when getting subject by name: ', e.message))
-    }
-}
