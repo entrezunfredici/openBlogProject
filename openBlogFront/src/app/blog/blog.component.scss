@@ -1,11 +1,12 @@
 .body {
     display: flex;
+    height:100%;
 }
 
 #posts_zone {
-    flex: 1; /* Occupe tout l'espace restant */
+    flex: 1;
 }
 
 #sidebar {
-    flex: 0 0 20%; /* 20% de la largeur totale */
+    flex: 0 0 10%;
 }
