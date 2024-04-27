@@ -1,4 +1,3 @@
-import { SidebarComponent } from './../sidebar/sidebar.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +9,8 @@ import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentsDetailComponent } from './comments-detail/comments-detail.component';
 
 import { BlogRoutingModule } from './blog-routing.module';
+
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @NgModule({
   declarations: [

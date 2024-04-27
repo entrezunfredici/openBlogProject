@@ -2,29 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent } from './posts-list/post-list.component';
 import { PostsWriterComponent } from './posts-writer/posts-writer.component';
-import { BlogComponent }  from './blog.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'posts', // Rediriger vers une route par défaut
-        pathMatch: 'full'
+        component: PostListComponent
     },
     {
-        path: 'posts',
-        component: BlogComponent,
-        children: [
-            {
-                path: '',
-                component: PostListComponent,
-                outlet: 'blogZoneOutlet'
-            },
-            {
-                path: 'new',
-                component: PostsWriterComponent,
-                outlet: 'blogZoneOutlet'
-            }
-        ]
+        path: 'new',
+        component: PostsWriterComponent
     }
 ];
 
