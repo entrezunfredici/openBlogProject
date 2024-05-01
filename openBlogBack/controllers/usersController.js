@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const usersService = require('../services/db/users')
+const usersService = require('../services/users');
 const createError = require('http-errors');
 const { ServerError } = require('../errors');
 
@@ -11,7 +11,6 @@ exports.authMiddleware = async (req, res, next) => {
         try {
             const decodedToken = await jwt.verify(token, process.env.SECRET);
             if (decodedToken) {
-                // We can store in req.locals = {} some info about the user to propagate into next controller
                 next();
             } else {
                 next(createError(401, 'Authentication is no more valid'))
@@ -23,34 +22,30 @@ exports.authMiddleware = async (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-    const {username, password, email} = req.body
-
+    const {username, password, email} = req.body;
     try {
         const user = await usersService.addUser(username, password, email)
         if (!user) {
-            throw new ServerError('cannot register user')
+            throw new ServerError('Cannot register user')
         }
-        return res.status(201).send()
+        return res.status(201).json({success: true}).send()
     } catch(e) {
         return next(createError(e.statusCode, e.message))
     }
 }
 
-exports.loginContact = async (username, password) => {
-    const contact = await this.getContactByUsernameWithPassword(username)
-    if (!contact) {
+exports.login = async (username, password) => {
+    const user = await usersService.getUserByUsernameWithPassword(username)
+    if (!user) {
         throw new NotFound('No user found for username:' + username)
     }
 
-    const verifiedContact = await bcrypt.compare(password, contact.password)
-    if (!verifiedContact) {
+    const verifiedUser = await bcrypt.compare(password, user.password)
+    if (!verifiedUser) {
         throw new NotLogged('Password incorrect for username')
     }
-
-    console.log(contact.id)
-    console.log(contact.username)
     const token = jwt.sign({
-        data: {id: contact.id, username: contact.username}
+        data: {id: user.id, username: user.username}
     }, process.env.SECRET, {
             expiresIn: '30s'
         })

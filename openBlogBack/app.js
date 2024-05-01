@@ -9,4 +9,7 @@ app.use('/subjects', subjectsrouter)
 const postsrouter = require('./routers/posts')
 app.use('/posts', postsrouter)
 
+const usersrouter = require('./routers/users')
+app.use('/users', usersrouter)
+
 module.exports = app

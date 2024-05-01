@@ -18,12 +18,13 @@
     "bcrypt": "^5.1.1",
     "express": "^4.19.2",
     "express-openapi-validator": "^5.1.6",
+    "http-error": "^0.0.6",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.9.4",
+    "mysql2": "^3.9.7",
     "node-cron": "^3.0.3",
     "reactions": "^0.0.13",
-    "sequelize": "^6.37.2",
+    "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7"
   }
 }

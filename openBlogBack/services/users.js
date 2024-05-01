@@ -1,6 +1,8 @@
-const { users } = require('../../models')
+const { users } = require('../models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const createError = require('http-errors');
+const { ServerError } = require('../errors');
 
 exports.getUsers = async () => {
     return await users.findAll({attributes: {exclude: ['password']}})
@@ -12,6 +14,14 @@ exports.getUserByUsername = async (username) => {
             username
         },
         attributes: {exclude: ['password']}
+    })
+}
+
+exports.getUserByUsernameWithPassword = async (username) => {
+    return await users.findOne({
+        where: {
+            username
+        }
     })
 }
 
@@ -30,7 +40,7 @@ exports.addUser = async (username, password, email) => {
         throw new BadRequest('user already exists')
     }
     return bcrypt.hash(password, 10).then((hash) => {
-        return users.create({username, password: hash, email, role: 'user'})
+        return users.create({username, password: hash, email})
     }).catch((e) => {
         throw new ServerError('Error when performing bcrypt: ', e.message)
     })
