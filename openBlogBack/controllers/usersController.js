@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const usersService = require('../services/db/users')
+const usersService = require('../services/users')
 const createError = require('http-errors');
 const { ServerError } = require('../errors');
 
