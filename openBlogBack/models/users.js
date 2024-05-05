@@ -12,7 +12,7 @@ module.exports = (instance) => {
             allowNull: false,
             defaultValue: 'https://www.w3schools.com/howto/img_avatar.png'
         },
-        userName: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false
         },

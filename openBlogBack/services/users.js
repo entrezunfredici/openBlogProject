@@ -5,7 +5,7 @@ const createError = require('http-errors');
 const { ServerError } = require('../errors');
 
 exports.getUsers = async () => {
-    return await users.findAll({attributes: {exclude: ['password']}})
+    return await users.findAll({ attributes: { exclude: ['password'] } })
 }
 
 exports.getUserByUsername = async (username) => {
@@ -13,7 +13,7 @@ exports.getUserByUsername = async (username) => {
         where: {
             username
         },
-        attributes: {exclude: ['password']}
+        attributes: { exclude: ['password'] }
     })
 }
 
@@ -30,7 +30,7 @@ exports.getUserById = async (id) => {
         where: {
             id
         },
-        attributes: {exclude: ['password']}
+        attributes: { exclude: ['password'] }
     })
 }
 
@@ -40,7 +40,7 @@ exports.addUser = async (username, password, email) => {
         throw new BadRequest('user already exists')
     }
     return bcrypt.hash(password, 10).then((hash) => {
-        return users.create({username, password: hash, email})
+        return users.create({username, password, email })
     }).catch((e) => {
         throw new ServerError('Error when performing bcrypt: ', e.message)
     })
@@ -48,10 +48,10 @@ exports.addUser = async (username, password, email) => {
 
 exports.updateUser = async (id, userName, password, email, userPhoto, description) => {
     return bcrypt.hash(password, 10).then((hash) => {
-        return contact.update({userName, password: hash, email, userPhoto, description}, {where: {id}})
+        return contact.update({ userName, password: hash, email, userPhoto, description }, { where: { id } })
     }).catch((e) => {
         throw new ServerError('Error when performing bcrypt: ', e.message)
-    }) 
+    })
 }
 
 exports.login = async (username, password) => {
@@ -64,9 +64,9 @@ exports.login = async (username, password) => {
     if (!verifiedUser) {
         throw new NotLogged('password incorrect for username')
     }
-    
+
     const token = jwt.sign({
-        data: {id: user.id, username: user.username}
+        data: { id: user.id, username: user.username }
     }, process.env.SECRET, {
         expiresIn: '30s'
     })
@@ -74,9 +74,9 @@ exports.login = async (username, password) => {
 }
 
 exports.updateUserRôle = async (id, role) => {
-    return users.update({role}, {where: {id}})
+    return users.update({ role }, { where: { id } })
 }
 
 exports.deleteUserByID = async (id) => {
-    return users.destroy({where: {id}})
+    return users.destroy({ where: { id } })
 }
