@@ -1,12 +1,13 @@
 <div class="sidebar">
-    <div id="sideBar_profile_id" class="sideBar_profile">
+    <div id="sideBar_profile_id" class="sideBar_profile" (click)="navigateToUsersInterface()">
         <img id="sideBar_profile_image" src="" alt="profile image">
         <h2 id="sideBar_profile_name">
             
         </h2>
     </div>
     <div class="sideBar_menu">
-        <button id="create_post_button" class="sideBar_menu_button isVisible" (click)="navigateToNewPosts()">Create Post</button>
+        <button id="create_post_button" class="sideBar_menu_button" (click)="navigateToNewPosts()">Create Post</button>
+        <!-- <button id="create_post_button" class="sideBar_menu_button" (click)="console.log('test')">Create Post</button> -->
         <a id="my_posts_button" class="sideBar_menu_button" routerLink="/new">create posts</a>
     </div>
     <div class="sideBar_search">
