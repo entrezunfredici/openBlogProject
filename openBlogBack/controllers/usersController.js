@@ -34,7 +34,8 @@ exports.register = async (req, res, next) => {
     }
 }
 
-exports.login = async (username, password) => {
+exports.login = async (req, res, next) => {
+    const {username, password} = req.body;
     const user = await usersService.getUserByUsernameWithPassword(username)
     if (!user) {
         throw new NotFound('No user found for username:' + username)
@@ -47,7 +48,99 @@ exports.login = async (username, password) => {
     const token = jwt.sign({
         data: {id: user.id, username: user.username}
     }, process.env.SECRET, {
-            expiresIn: '30s'
-        })
+        expiresIn: '30s'
+    })
     return token
+}
+
+exports.getUserByUSername = async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        const user = await usersService.getUserByUsername(username);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.getUserById = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.getUserById(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.updateUser = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const {username, password, email, userPhoto, description} = req.body;
+        const user = await usersService.updateUser(userId, username, password, email, userPhoto, description);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.increaceNbPosts = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.increaceNbPosts(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.increaceNbFollowers = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.increaceNbFollowers(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.decreaceNbFollowers = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.decreaceNbFollowers(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.decreaceNbPosts = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.decreaceNbPosts(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
 }
