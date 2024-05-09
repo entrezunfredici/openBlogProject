@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { LogInFormComponent } from './log-in-form/log-in-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
@@ -9,8 +10,6 @@ import { UserProfileViewComponent } from './user-profile-view/user-profile-view.
 import { UsersComponent } from './users.component';
 
 import { UsersRoutingModule } from './users-routing.module';
-
-
 
 @NgModule({
   declarations: [
@@ -23,7 +22,8 @@ import { UsersRoutingModule } from './users-routing.module';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    FormsModule
   ]
 })
 export class UsersModule { }

@@ -11,7 +11,7 @@ export class LogInFormComponent {
   usernameOrEmail: string = '';
   password: string = '';
 
-  logIn() {
+  onSubmit() {
     console.log('Username Or Email', this.usernameOrEmail);
     console.log('Password', this.password);
   }

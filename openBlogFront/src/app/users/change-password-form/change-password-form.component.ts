@@ -10,7 +10,7 @@ export class ChangePasswordFormComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  changePassword() {
+  onSubmit() {
     console.log('Email', this.email);
     console.log('Password', this.password);
     console.log('Password', this.confirmPassword);
