@@ -1,0 +1,42 @@
+
+//classical colors
+$blue: #007bff;
+$darkBlue: #000080;
+$red: #dc3545;
+$green: #28a745;
+$yellow: #ffc107;
+$orange: #fd7e14;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #fff;
+$black: #000;
+$gray: #6c757d;
+$darkGray: #343a40;
+$charcoalGray: #303030;
+
+//materialcolors
+$copper: #b36700;
+$chromeGray: #dbe4eb;
+
+//specific colors
+$primary: #007bff;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+
+//font specific colors
+$fontLight: #f8f9fa;
+$fontDark: #343a40;
+
+//default colors sets:
+$defaultMainBkgd:$darkBlue;
+$defaultNavBarBkgd:$charcoalGray;
+$defaultBorderColor:$chromeGray;
+$defaultShadow:$black;
+
+//color litsts
+$borderColorsList: $chromeGray, $gray, $darkGray, $charcoalGray, $darkBlue, $blue, $green, $teal, $cyan;

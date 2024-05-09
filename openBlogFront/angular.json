@@ -55,6 +55,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/colors.scss",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -120,6 +121,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/colors.scss",
               "src/styles.scss"
             ],
             "scripts": []

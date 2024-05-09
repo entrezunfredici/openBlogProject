@@ -1,9 +1,11 @@
+@import '../../colors.scss';
+
 .sidebar {
-    background-color: #303030;
+    background-color: $defaultNavBarBkgd;
     width: 100%;
     height: 100%;
-    color: #FFFFFF;
-    border: 1px solid #DBE4EB;
+    color: $fontLight;
+    border: 1px solid $defaultBorderColor;
     overflow-x: hidden;
 }
 
@@ -13,8 +15,8 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
-    border: 1px solid #DBE4EB;
+    color: $fontLight;
+    border: 1px solid $defaultBorderColor;
 }
 
 .sideBar_profile img {
@@ -22,7 +24,7 @@
     height: 150px;
     border-radius: 100%;
     margin: 10px;
-    border: 1px solid #DBE4EB;
+    border: 1px solid $defaultBorderColor;
 }
 
 .sideBar_profile h2 {
@@ -36,8 +38,8 @@
     align-items: center;
     width: 99%;
     justify-content: center;
-    color: #FFFFFF;
-    border: 1px solid #DBE4EB;
+    color: $fontLight;
+    border: 1px solid $defaultBorderColor;
 }
 
 .sideBar_search {
@@ -46,7 +48,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    color: #FFFFFF;
+    color: $fontLight;
 }
 
 .is_visible {
@@ -62,8 +64,8 @@
     height: 50px;
     background-color: #000000;
     box-shadow: 0 5px 15px #000000;
-    color: #FFFFFF;
-    border: 2px solid #DBE4EB;
+    color: $fontLight;
+    border: 2px solid $defaultBorderColor;
     border-radius: 25px;
     margin: 10px;
     cursor: pointer;

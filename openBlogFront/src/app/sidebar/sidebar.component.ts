@@ -10,12 +10,10 @@ export class SidebarComponent {
   constructor(private router: Router) { }
 
   navigateToNewPosts() {
-    console.log("test");
     this.router.navigate(['/new']);
   }
 
   navigateToUsersInterface() {
-    alert("users");
-    //this.router.navigate(['/users']);
+    this.router.navigate(['/users']);
   }
 }
