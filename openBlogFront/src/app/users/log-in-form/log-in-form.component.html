@@ -1,4 +1,4 @@
-<section id="form-section">
+<div id="form-section">
     <form id="log-in-form" (ngSubmit)="onSubmit()">
         <label>username or email</label>
         <input type="text" name="usernameOrEmail" [(ngModel)]="usernameOrEmail" required/>
@@ -8,4 +8,4 @@
     </form>
     <button class="" (clic)="navigateToRegister()">sign up</button>
     <button class="" (clic)="navigateToChangePassword()">forgot password?</button>
-</section>
+</div>
