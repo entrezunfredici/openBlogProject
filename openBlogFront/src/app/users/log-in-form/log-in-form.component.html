@@ -1,0 +1,11 @@
+<div id="form-section">
+    <form id="log-in-form" (ngSubmit)="onSubmit()">
+        <label>username or email</label>
+        <input type="text" name="usernameOrEmail" [(ngModel)]="usernameOrEmail" required/>
+        <label>password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required/>
+        <button class="" type="submit">login</button>
+    </form>
+    <button class="" (clic)="navigateToRegister()">sign up</button>
+    <button class="" (clic)="navigateToChangePassword()">forgot password?</button>
+</div>
