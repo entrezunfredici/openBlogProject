@@ -34,23 +34,31 @@ exports.register = async (req, res, next) => {
     }
 }
 
-exports.login = async (req, res, next) => {
-    const {username, password} = req.body;
-    const user = await usersService.getUserByUsernameWithPassword(username)
-    if (!user) {
-        throw new NotFound('No user found for username:' + username)
-    }
+// exports.login = async (req, res, next) => {
+//     const {username, password} = req.body
+//     try {
+//         const token = await usersService.login(username, password)
+//         if (token) {
+//             return res.status(200).json({success: true, token})
+//         }
+//         return res.status(400).json({success: false})
+//     } catch(e) {
+//         return next(createError(e.statusCode, e.message))
+//     }
+// }
 
-    const verifiedUser = await bcrypt.compare(password, user.password)
-    if (!verifiedUser) {
-        throw new NotLogged('Password incorrect for username')
+exports.login = async (req, res, next) => {
+    const { username, password } = req.body;
+    try {
+        const token = await usersService.login(username, password);
+        if (token) {
+            return res.status(200).json({ success: true, token });
+        }
+        return res.status(400).json({ success: false });
+    } catch(error) {
+        console.error("Error caught in login:", error); // Ajoutez ceci pour voir l'erreur dans la console
+        return next(createError(500, 'Internal Server Error'));
     }
-    const token = jwt.sign({
-        data: {id: user.id, username: user.username}
-    }, process.env.SECRET, {
-        expiresIn: '30s'
-    })
-    return token
 }
 
 exports.getUserByUSername = async (req, res, next) => {

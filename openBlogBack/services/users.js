@@ -1,8 +1,7 @@
 const { users } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const createError = require('http-errors');
-const { ServerError } = require('../errors');
+const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors');
 
 exports.getUsers = async () => {
     return await users.findAll({ attributes: { exclude: ['password'] } })
@@ -40,7 +39,7 @@ exports.addUser = async (username, password, email) => {
         throw new BadRequest('user already exists')
     }
     return bcrypt.hash(password, 10).then((hash) => {
-        return users.create({username, password, email })
+        return users.create({username, password: hash, email})
     }).catch((e) => {
         throw new ServerError('Error when performing bcrypt: ', e.message)
     })
@@ -56,26 +55,23 @@ exports.updateUser = async (id, userName, password, email, userPhoto, descriptio
 }
 
 exports.login = async (username, password) => {
-    try{
-        const user = await this.getUserByUsername(username)
-        if (!user) {
-            throw new NotFound('no user found for username: ' + username)
-        }
+    const user = await this.getUserByUsernameWithPassword(username);
+    if (!user) {
+        throw new NotFound('no user found for username: ' + username);
+    }
 
-        const verifiedUser = await bcrypt.compare(password, user.password)
-        if (!verifiedUser) {
-            throw new NotLogged('password incorrect for username')
-        }
-
-        const token = jwt.sign({
-            data: { id: user.id, username: user.username }
-        }, process.env.SECRET, {
-            expiresIn: '30s'
-        })
-        return token
-    } catch(e) {
-        throw new ServerError('Error when performing bcrypt: ', e.message)
-    };
+    const verifiedUser = await bcrypt.compare(password, user.password);
+    if (!verifiedUser) {
+        throw new NotLogged('password incorrect for username');
+    }
+    console.log(user.id+" ; "+user.username);
+    const token = jwt.sign({
+        data: {id: user.id, username: user.username}
+    }, process.env.SECRET, {
+        expiresIn: '30s'
+    });
+    console.log(token);
+    return token;
 }
 
 exports.updateUserRôle = async (id, role) => {
