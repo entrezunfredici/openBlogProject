@@ -1,6 +1,6 @@
 const subjects = require('../services/subjects')
 const createError = require('http-errors');
-const { ServerError } = require('../errors')
+const { ServerError } = require('../errors');
 
 exports.getSubjects = async (req, res, next) => {
     try {

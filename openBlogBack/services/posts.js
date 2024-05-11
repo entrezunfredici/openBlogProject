@@ -1,6 +1,7 @@
 const { posts } = require('../models');
+const usersService = require('./users');
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
-// const usersService = require('./users');
+
 
 exports.getPosts = async () => {
     return posts.findAll()
@@ -31,14 +32,10 @@ exports.getPostsByTitle = async (title) => {
 }
 
 exports.createPost = async (title, content, authorId) => {
-    // userExist = await usersService.findOne({
-    //     where: {
-    //         id: authorId
-    //     }
-    // })
-    // if (!userExist) {
-    //     throw new NotFound('User not found')
-    // }
+    //userExist = await usersService.getUserById(id);
+    //if (!userExist) {
+    //    throw new NotFound('User not found')
+    //}
     return posts.create({ title, content, authorId });
 }
 

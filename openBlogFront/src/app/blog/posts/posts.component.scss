@@ -1,3 +1,5 @@
+@import '../../../colors.scss';
+
 .posts{
     color: #FFFFFF;
     width: 90%;
@@ -9,7 +11,7 @@
     flex-direction: row;
     width: 500px;
     height: 100px;
-    color: #FFFFFF;
+    color: $white;
     font-size: 20px;
 }
 
@@ -17,8 +19,8 @@
     width: 100px;
     height: 100px;
     display: block;
-    background-color: #303030;
-    border: 1px solid #dbe4eb;
+    background-color: $charcoalGray;
+    border: 1px solid $defaultBorderColor;
     border-radius: 10px;
 }
 
@@ -28,13 +30,13 @@
 }
 
 .container{
-    background-color: #303030;
+    background-color: $charcoalGray;
     width: 95%;
     margin-top: -50px;
     margin-left: 50px;
     padding-top: 60px;
     padding-left:2%;
-    border: 1px solid #dbe4eb;
+    border: 1px solid $defaultBorderColor;
     border-radius: 10px;
     animation: border-color-change 3s infinite alternate;
     padding-bottom:20px;
@@ -54,14 +56,14 @@
 }
 
 .verticalSeparator {
-    border-left: 1px solid #dbe4eb;
+    border-left: 1px solid $defaultBorderColor;
     height: 100px;
     margin-left: 50px;
 }
 
 .horizontalSeparator {
     margin-top: 0px;
-    border-top: 1px solid #dbe4eb;
+    border-top: 1px solid $defaultBorderColor;
     width: 90%;
 }
 

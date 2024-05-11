@@ -1,5 +1,5 @@
 const { subjects } = require('../models')
-const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
+const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors');
 
 exports.getSubjectByName = async(subjectName) => {
     return subjects.findOne({
