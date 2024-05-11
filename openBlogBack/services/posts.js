@@ -1,5 +1,5 @@
 const { posts } = require('../models');
-const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
+const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors');
 // const usersService = require('./users');
 
 exports.getPosts = async () => {
