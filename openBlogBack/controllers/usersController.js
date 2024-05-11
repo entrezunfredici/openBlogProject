@@ -56,8 +56,7 @@ exports.login = async (req, res, next) => {
         }
         return res.status(400).json({ success: false });
     } catch(error) {
-        console.error("Error caught in login:", error); // Ajoutez ceci pour voir l'erreur dans la console
-        return next(createError(500, 'Internal Server Error'));
+        return next(createError(500, error));
     }
 }
 
