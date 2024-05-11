@@ -1,0 +1,12 @@
+<div id="form-section">
+    <form id="register-form" (ngSubmit)="register()">
+        <label>username</label>
+        <input type="text" name="username" [(ngModel)]="username" required/>
+        <label>email</label>
+        <input type="text" name="username" [(ngModel)]="username" required/>
+        <label>password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required/>
+        <button class="" type="submit">sign up</button>
+    </form>
+    <button class="" (clic)="navigateToLogin()">login</button>
+</div>
