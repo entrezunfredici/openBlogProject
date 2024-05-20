@@ -16,5 +16,4 @@ router.put('/increaceNbPosts/id=:id', usersController.increaceNbPosts);
 router.put('/increaceNbFollowers/:id', usersController.increaceNbFollowers);
 router.put('/decreaceNbFollowers/:id', usersController.decreaceNbFollowers);
 
-
 module.exports = router;

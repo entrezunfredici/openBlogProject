@@ -1,4 +1,4 @@
-// posts.model.ts
+// users.model.ts
 export interface Users {
     id: number;
     username: string;
