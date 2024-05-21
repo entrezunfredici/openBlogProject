@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const usersService = require('../services/db/users')
+const usersService = require('../services/users');
 const createError = require('http-errors');
 const { ServerError } = require('../errors');
 
@@ -11,7 +11,6 @@ exports.authMiddleware = async (req, res, next) => {
         try {
             const decodedToken = await jwt.verify(token, process.env.SECRET);
             if (decodedToken) {
-                // We can store in req.locals = {} some info about the user to propagate into next controller
                 next();
             } else {
                 next(createError(401, 'Authentication is no more valid'))
@@ -23,36 +22,132 @@ exports.authMiddleware = async (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-    const {username, password, email} = req.body
-
+    const {username, password, email} = req.body;
     try {
         const user = await usersService.addUser(username, password, email)
         if (!user) {
-            throw new ServerError('cannot register user')
+            throw new ServerError('Cannot register user')
         }
-        return res.status(201).send()
+        return res.status(201).json({success: true}).send()
     } catch(e) {
         return next(createError(e.statusCode, e.message))
     }
 }
 
-exports.loginContact = async (username, password) => {
-    const contact = await this.getContactByUsernameWithPassword(username)
-    if (!contact) {
-        throw new NotFound('No user found for username:' + username)
-    }
+// exports.login = async (req, res, next) => {
+//     const {username, password} = req.body
+//     try {
+//         const token = await usersService.login(username, password)
+//         if (token) {
+//             return res.status(200).json({success: true, token})
+//         }
+//         return res.status(400).json({success: false})
+//     } catch(e) {
+//         return next(createError(e.statusCode, e.message))
+//     }
+// }
 
-    const verifiedContact = await bcrypt.compare(password, contact.password)
-    if (!verifiedContact) {
-        throw new NotLogged('Password incorrect for username')
+exports.login = async (req, res, next) => {
+    const { username, password } = req.body;
+    try {
+        const token = await usersService.login(username, password);
+        if (token) {
+            return res.status(200).json({ success: true, token });
+        }
+        return res.status(400).json({ success: false });
+    } catch(error) {
+        return next(createError(500, error));
     }
+}
 
-    console.log(contact.id)
-    console.log(contact.username)
-    const token = jwt.sign({
-        data: {id: contact.id, username: contact.username}
-    }, process.env.SECRET, {
-            expiresIn: '30s'
-        })
-    return token
+exports.getUserByUSername = async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        const user = await usersService.getUserByUsername(username);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.getUserById = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.getUserById(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.updateUser = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const {username, password, email, userPhoto, description} = req.body;
+        const user = await usersService.updateUser(userId, username, password, email, userPhoto, description);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.increaceNbPosts = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.increaceNbPosts(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.increaceNbFollowers = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.increaceNbFollowers(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.decreaceNbFollowers = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.decreaceNbFollowers(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.decreaceNbPosts = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.decreaceNbPosts(userId);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json({success: true, user});
+    } catch (error) {
+        next(new ServerError());
+    }
 }

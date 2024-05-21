@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-blog',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './blog.component.scss'
 })
 
-export class BlogComponent {
-  
+export class BlogComponent implements OnInit {
+  constructor(private BlogService :BlogService) { }
+  ngOnInit(){
+    this.BlogService.getPosts().subscribe({
+      next: (posts) => {
+        console.log(posts)
+      },
+      error: (error) => {
+        console.error('Une erreur s\'est produite :', error);
+      }
+    });
+  }
 }
