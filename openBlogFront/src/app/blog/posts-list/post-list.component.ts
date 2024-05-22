@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { BlogService } from '../../services/blog.service';
+import { Posts } from '../../model/posts.model'
 
 @Component({
   selector: 'app-post-list',
@@ -6,37 +8,16 @@ import { Component, Input } from '@angular/core';
   styleUrl: './post-list.component.scss'
 })
 export class PostListComponent {
-  posts : post[] = [
-    {
-      title:"title",
-      creatorname: "kévin",
-      creatoravatar: "",
-      content:"text",
-      nbLike:0,
-      nbDislike:0,
-      nbComment:0,
-      nbReports:0
-    },
-    {
-      title:"title2",
-      creatorname: "kévin",
-      creatoravatar: "",
-      content:"text2",
-      nbLike:0,
-      nbDislike:0,
-      nbComment:0,
-      nbReports:0
-    }
-  ]
-}
-
-export interface post {
-  title: string;
-  creatorname: string;
-  creatoravatar: string;
-  content: string;
-  nbLike:number;
-  nbDislike:number;
-  nbComment:number;
-  nbReports:number
+  constructor(private BlogService :BlogService) { }
+  posts: Posts[] = [];
+  ngOnInit(){
+    this.BlogService.getPosts().subscribe({
+      next: (posts) => {
+        this.posts = posts;
+      },
+      error: (error) => {
+        console.error('Une erreur s\'est produite :', error);
+      }
+    });
+  }
 }

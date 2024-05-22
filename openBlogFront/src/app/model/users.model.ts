@@ -7,6 +7,6 @@ export interface Users {
     password: string;
     nbPosts: number;
     followers: number;
-    description: number;
+    description: string;
     role: string;
 }

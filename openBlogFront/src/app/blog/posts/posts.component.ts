@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Posts } from '../../model/posts.model'
+import { UsersService } from '../../services/users.service';
+import { Users } from '../../model/users.model'
 
 @Component({
   selector: 'app-posts',
@@ -6,34 +9,46 @@ import { Component, Input } from '@angular/core';
   styleUrl: './posts.component.scss'
 })
 export class PostsComponent {
-  @Input() message: post = {
-    title: "",
-    creatorname: "",
-    creatoravatar: "",
-    content: "",
-    nbLike: 0,
-    nbDislike: 0,
-    nbComment: 0,
-    nbReports: 0
+  user: Users={
+    id: 0,
+    username: "test",
+    userPhoto: "ezqrstdyfughi",
+    email: "frwwv<",
+    password: "",
+    nbPosts: 0,
+    followers: 0,
+    description: "",
+    role: ""
   };
-
+  @Input() posts: Posts = {
+    id: 0,
+    authorId: 0,
+    title: "",
+    content: "",
+    nbComments: 0,
+    nbLikes: 0,
+    nbDislikes: 0,
+    nbReports: 0,
+    nbViews: 0
+  };
+  constructor(private UsersService :UsersService) { }
+  ngOnInit(){
+    this.UsersService.getUserById(this.posts.authorId).subscribe({
+      next: (user) => {
+        this.user = user;
+        console.log(user);
+      },
+      error: (error) => {
+        console.error('Une erreur s\'est produite :', error);
+      }
+    });
+  }
 }
 
-export interface post {
-  title: string;
-  creatorname: string;
-  creatoravatar: string;
-  content: string;
-  nbLike:number;
-  nbDislike:number;
-  nbComment:number;
-  nbReports:number
-}
-
-export interface comments {
+// export class CommentsComponent {
   
-}
+// }
 
-export interface subjects {
+// export class SubjectsComponent {
   
-}
+// }
