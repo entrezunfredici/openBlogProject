@@ -1,11 +1,15 @@
-<div id="form-section">
-    <form id="log-in-form" (ngSubmit)="onSubmit()">
-        <label>username or email</label>
-        <input type="text" name="usernameOrEmail" [(ngModel)]="usernameOrEmail" required/>
-        <label>password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required/>
-        <button class="" type="submit">login</button>
+<div class="form_section">
+    <form id="log_in_form" (ngSubmit)="onSubmit()">
+        <p>
+            <label>username or email</label>
+            <input type="text" name="usernameOrEmail" [(ngModel)]="usernameOrEmail" required/>
+        </p>
+        <p>
+            <label>password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" required/>
+        </p>
+        <button class="menu_button"  type="submit">login</button>
     </form>
-    <button class="" (clic)="navigateToRegister()">sign up</button>
-    <button class="" (clic)="navigateToChangePassword()">forgot password?</button>
+    <button class="menu_button" (clic)="navigateToRegister()">sign up</button>
+    <button class="menu_button" (clic)="navigateToChangePassword()">forgot password?</button>
 </div>

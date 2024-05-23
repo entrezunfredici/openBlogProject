@@ -1,0 +1,11 @@
+@import '../../colors.scss';
+@import '../../styles.scss';
+
+.form_section{
+    width:20%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    margin-bottom:auto;
+    background-color:$defaultFormColor;
+}
