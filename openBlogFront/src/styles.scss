@@ -17,8 +17,8 @@ body {
 .menu_button {
     width: 90%;
     height: 50px;
-    background-color: #000000;
-    box-shadow: 0 5px 15px #000000;
+    background-color: $defaultButtonBkgnd;
+    box-shadow: 0 5px 15px $defaultShadow;
     color: $fontLight;
     border: 2px solid $defaultBorderColor;
     border-radius: 25px;
@@ -28,6 +28,10 @@ body {
 }
 
 .menu_button:active {
-    background-color: #333333;
+    background-color: $defaultActiveButton;
     box-shadow: none;
+}
+
+.validate_button {
+    background-color: $success;
 }
