@@ -77,6 +77,7 @@ exports.getUserById = async (req, res, next) => {
     try {
         const userId = req.params.id;
         const user = await usersService.getUserById(userId);
+        console.log(user)
         if (!user) {
             throw createError(404, 'User not found');
         }
@@ -84,7 +85,7 @@ exports.getUserById = async (req, res, next) => {
     } catch (error) {
         next(new ServerError());
     }
-}
+};
 
 exports.updateUser = async (req, res, next) => {
     try {

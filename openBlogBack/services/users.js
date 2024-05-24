@@ -30,7 +30,7 @@ exports.getUserById = async (id) => {
             id
         },
         attributes: { exclude: ['password'] }
-    })
+    });
 }
 
 exports.addUser = async (username, password, email) => {
