@@ -2,9 +2,11 @@ const router = require('express').Router();
 usersController = require('../controllers/usersController');
 
 //route for get all users
-router.get('/:id', usersController.getUserById);
+router.get('/id/:id', usersController.getUserById);
+// Route pour récupérer un utilisateur avec ses posts
+router.get('/id/:id/posts', usersController.getUserWithPosts);
 //route for get user by username
-router.get('/:username', usersController.getUserByUSername);
+router.get('/username/:username', usersController.getUserByUSername);
 //route for register
 router.post('/register', usersController.register);
 //route for login

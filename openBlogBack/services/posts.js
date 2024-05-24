@@ -1,14 +1,13 @@
-const { posts } = require('../models');
+const { users, posts } = require('../models');
 const usersService = require('./users');
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
 
-
 exports.getPosts = async () => {
-    return posts.findAll()
+    return await posts.findAll()
 }
 
 exports.getPostById = async (postId) => {
-    return posts.findOne({
+    return await posts.findOne({
         where: {
             id: postId
         }
@@ -36,15 +35,15 @@ exports.createPost = async (title, content, authorId) => {
     //if (!userExist) {
     //    throw new NotFound('User not found')
     //}
-    return posts.create({ title, content, authorId });
+    return await posts.create({ title, content, authorId });
 }
 
 exports.updatePost = async (postId, title, content) => {
-    return posts.update({ title, content }, { where: { id: postId } });
+    return await posts.update({ title, content }, { where: { id: postId } });
 }
 
 exports.deletePost = async (postId) => {
-    return posts.destroy({
+    return await posts.destroy({
         where: {
             id: postId
         }
