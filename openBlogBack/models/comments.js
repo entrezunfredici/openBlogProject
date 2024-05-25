@@ -9,11 +9,19 @@ module.exports = (instance) => {
         },
         postId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'posts', // nom du modèle référencé
+                key: 'id'
+            }
         },
         userId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'users', // nom du modèle référencé
+                key: 'id'
+            }
         },
         content: {
             type: DataTypes.TEXT,

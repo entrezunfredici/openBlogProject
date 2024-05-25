@@ -26,6 +26,7 @@ postSubject.belongsTo(subjects, { foreignKey: 'subjectId' });
 users.hasMany(comments, { foreignKey: 'userId' });
 posts.hasMany(comments, { foreignKey: 'postId' });
 comments.belongsTo(users, { foreignKey: 'userId' });
+comments.belongsTo(posts, { foreignKey: 'postId' });
 
 module.exports = {
     instance,
