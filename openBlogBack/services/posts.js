@@ -1,24 +1,31 @@
-const { users, posts } = require('../models');
+const { users, posts, subjects, postSubject } = require('../models');
 const usersService = require('./users');
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
 
 exports.getPosts = async () => {
-    return await posts.findAll()
+    return await posts.findAll({
+        include: [users],
+        attributes: { exclude: ['password'] }
+    })
 }
 
 exports.getPostById = async (postId) => {
     return await posts.findOne({
         where: {
             id: postId
-        }
+        },
+        include: [users],
+        attributes: { exclude: ['password'] }
     })
 }
 
 exports.getPostsByAuthorId = async (authorId) => {
     return posts.findAll({
         where: {
-            authorId: authorId
-        }
+            userId: authorId
+        },
+        include: [users],
+        attributes: { exclude: ['password'] }
     })
 }
 
@@ -26,16 +33,14 @@ exports.getPostsByTitle = async (title) => {
     return posts.findAll({
         where: {
             title: title
-        }
+        },
+        include: [users],
+        attributes: { exclude: ['password'] }
     })
 }
 
 exports.createPost = async (title, content, authorId) => {
-    //userExist = await usersService.getUserById(id);
-    //if (!userExist) {
-    //    throw new NotFound('User not found')
-    //}
-    return await posts.create({ title, content, authorId });
+    return await posts.create({ title, content, userId:authorId });
 }
 
 exports.updatePost = async (postId, title, content) => {
@@ -68,4 +73,8 @@ exports.incrementNbReports = async (postId) => {
 
 exports.incrementNbViews = async (postId) => {
     return posts.increment('nbViews', { where: { id: postId } });
+}
+
+exports.addSubject = async (postId, subjectId) => {
+    return postSubject.create({postId: postId, subjectId: subjectId});
 }

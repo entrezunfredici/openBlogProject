@@ -114,3 +114,14 @@ exports.incrementNbReports = async (req, res, next) => {
         next(new ServerError());
     }
 }
+
+exports.addSubject = async (req, res, next) => {
+    try {
+        const { postId, subjectId } = req.body;
+        await postsService.addSubject(postId, subjectId)
+    } catch (error) {
+        next(new 
+            ServerError()
+        );
+    }
+}

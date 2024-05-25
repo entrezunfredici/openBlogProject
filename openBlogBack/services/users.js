@@ -36,6 +36,7 @@ exports.getUserById = async (id) => {
 exports.getUserWithPosts = async (userId) => {
     return await users.findOne({
         where: { id: userId },
+        attributes: { exclude: ['password'] },
         include: [posts]  // Inclure les posts de l'utilisateur
     });
 };

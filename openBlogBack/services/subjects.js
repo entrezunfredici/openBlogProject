@@ -1,4 +1,4 @@
-const { subjects } = require('../models')
+const { subjects, postSubject } = require('../models')
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors');
 
 exports.getSubjectByName = async(subjectName) => {
@@ -14,6 +14,15 @@ exports.getSubjectById = async(subjectId) => {
         where: {
             id: subjectId
         }
+    })
+}
+
+exports.getSubjectsByPostId = async(postId) => {
+    return await postSubject.findAll({
+        where: {
+            postId: postId
+        },
+        include: [subjects]
     })
 }
 
