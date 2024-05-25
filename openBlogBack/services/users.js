@@ -1,4 +1,4 @@
-const { users } = require('../models');
+const { users, posts } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors');
@@ -32,6 +32,14 @@ exports.getUserById = async (id) => {
         attributes: { exclude: ['password'] }
     });
 }
+
+exports.getUserWithPosts = async (userId) => {
+    return await users.findOne({
+        where: { id: userId },
+        attributes: { exclude: ['password'] },
+        include: [posts]  // Inclure les posts de l'utilisateur
+    });
+};
 
 exports.addUser = async (username, password, email) => {
     const existingUser = await this.getUserByUsername(username)
