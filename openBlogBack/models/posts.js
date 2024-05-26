@@ -7,9 +7,13 @@ module.exports = (instance) => {
             primaryKey: true,
             autoIncrement: true
         },
-        authorId: {
+        userId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'users', // nom du modèle référencé
+                key: 'id'
+            }
         },
         title: {
             type: DataTypes.STRING,

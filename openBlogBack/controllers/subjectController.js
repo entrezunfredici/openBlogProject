@@ -35,6 +35,18 @@ exports.getSubjectByName = async (req, res, next) => {
     }
 }
 
+exports.getSubjectsByPostId = async (req, res, next) => {
+    try{
+        const subject = await subjects.getSubjectsByPostId(req.params.postId)
+        if (!subject) {
+            return next(createError(404, 'Subject not found'))
+        }
+        res.json(subject)
+    } catch (e) {
+        next(new ServerError('Error when getting subject by post id: ', e.message))
+    }
+}
+
 exports.incrementNbPost = async (req, res, next) => {
     try {
         const subject = await subjects.incrementNbPost(req.params.id)
@@ -61,4 +73,3 @@ exports.deleteSubject = async (req, res, next) => {
         next(new ServerError('Error when deleting subject: ', e.message))
     }
 }
-

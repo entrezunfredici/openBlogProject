@@ -84,7 +84,20 @@ exports.getUserById = async (req, res, next) => {
     } catch (error) {
         next(new ServerError());
     }
-}
+};
+
+exports.getUserWithPosts = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersService.getUserWithPosts(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        res.json({ success: true, user });
+    } catch (error) {
+        next(error);
+    }
+};
 
 exports.updateUser = async (req, res, next) => {
     try {
