@@ -13,10 +13,10 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
   getUserById(id: number): Observable<Users> {  // Correction du type de retour
-    return this.http.get<Users>(`${this.url}/${id}`);  // Correction de l'URL
+    return this.http.get<Users>(`${this.url}/id/${id}`);  // Correction de l'URL
   }
   getPostByUsername(username: string): Observable<Users> {  // Correction du type de retour
-    return this.http.get<Users>(`${this.url}/${username}`);  // Correction de l'URL
+    return this.http.get<Users>(`${this.url}/username/${username}`);  // Correction de l'URL
   }
   register(user: Users): Observable<Users> {
     return this.http.post<Users>(`${this.url}/register`, user);

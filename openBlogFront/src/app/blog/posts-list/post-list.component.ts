@@ -14,6 +14,7 @@ export class PostListComponent {
     this.BlogService.getPosts().subscribe({
       next: (posts) => {
         this.posts = posts;
+        console.log(this.posts)
       },
       error: (error) => {
         console.error('Une erreur s\'est produite :', error);
