@@ -22,6 +22,7 @@ export class RegisterFormComponent {
       error: (error) => {
         console.error('error creating user:', error);
       }
+      
     });
     console.log('Username', this.username);
     console.log('email', this.email)

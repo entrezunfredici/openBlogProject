@@ -20,8 +20,6 @@ export class BlogService {
       map(data => data.url)
     );
   }
-  
-
   getPosts(): Observable<Posts[]> {
     return this.http.get<Posts[]>(`${this.postUrl}/all`); 
   }
