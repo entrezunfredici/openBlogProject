@@ -10,20 +10,10 @@ import { Users } from '../../model/users.model'
 })
 export class RegisterFormComponent {
   constructor(private router: Router, private UserService :UsersService) { }
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  newUser: Users = {
-    id: 0,
-    username: this.username,
-    userPhoto: "",
-    email: this.email,
-    password: this.password,
-    nbPosts: 0,
-    followers: 0,
-    description: "",
-    role: "user"
-  }
+  username: string;
+  email: string;
+  password: string;
+  newUser: Users;
   register() {
     this.UserService.register(this.newUser).subscribe({
       next: (users) => {
