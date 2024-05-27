@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Posts } from '../model/posts.model';
-import { Subjects } from '../model/subjects.model';
+import { Subject } from '../model/subjects.model';
+import { postsSubject } from '../model/postsSubjects.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { Subjects } from '../model/subjects.model';
 export class BlogService {
   private jsonUrl = 'apiurl.json';
   private postUrl = 'http://localhost:8000/Posts';
+  private subjectsUrl = 'http://localhost:8000/subjects'
   //private postUrl = this.getUrl()+'/Posts';
   
   constructor(private http: HttpClient) { }
@@ -20,10 +22,10 @@ export class BlogService {
       map(data => data.url)
     );
   }
-  
-
   getPosts(): Observable<Posts[]> {
-    return this.http.get<Posts[]>(`${this.postUrl}/all`); 
+    return this.http.get<Posts[]>(
+      `${this.postUrl}/all`
+    ); 
   }
   getPostById(id: number): Observable<Posts> {  // Correction du type de retour
     return this.http.get<Posts>(`${this.postUrl}/id:${id}`);  // Correction de l'URL
@@ -33,6 +35,9 @@ export class BlogService {
   }
   getPostByTitle(title: string): Observable<Posts> {  // Correction du type de retour
     return this.http.get<Posts>(`${this.postUrl}/title:${title}`);  // Correction de l'URL
+  }
+  getSubjects(id: number): Observable<postsSubject[]> {
+    return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`)
   }
   createPost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/create`, post);
