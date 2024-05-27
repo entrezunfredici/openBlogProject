@@ -18,10 +18,10 @@ export class LogInFormComponent {
 
   navigateToRegister() {
     console.log("register");
-    this.router.navigate(['/register']);
+    this.router.navigate(['/users/register']);
   }
   navigateToChangePassword() {
     console.log("change password");
-    this.router.navigate(['/change_password']);
+    this.router.navigate(['/users/change_password']);
   }
 }

@@ -24,11 +24,12 @@ export class RegisterFormComponent {
       }
     });
     console.log('Username', this.username);
+    console.log('email', this.email)
     console.log('Password', this.password);
   }
 
   navigateToLogin() {
     console.log("login");
-    this.router.navigate(['/']);
+    this.router.navigate(['/users']);
   }
 }
