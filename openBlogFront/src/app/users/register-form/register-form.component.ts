@@ -21,7 +21,7 @@ export class RegisterFormComponent {
     password: this.password,
     nbPosts: 0,
     followers: 0,
-    description: 0,
+    description: "",
     role: "user"
   }
   register() {
