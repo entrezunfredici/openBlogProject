@@ -28,8 +28,11 @@ export class UsersService {
       "email": email
     });
   }
-  login(user: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.url}/login`, user);
+  login(username: string, password: string): Observable<Users> {
+    return this.http.post<Users>(`${this.url}/login`,{
+      "username": username,
+      "password": password
+    });
   }
   updateUser(id: number, user: Users): Observable<Users> {
     return this.http.post<Users>(`${this.url}/${id}`, user);

@@ -14,6 +14,6 @@ export class SidebarComponent {
   }
 
   navigateToUsersInterface() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users/config']);
   }
 }

@@ -24,7 +24,6 @@ export class LogInFormComponent {
   //     error: (error) => {
   //       console.error('error creating user:', error);
   //     }
-      
   //   });
   //   console.log('Username', this.username);
   //   console.log('email', this.email)
@@ -32,15 +31,15 @@ export class LogInFormComponent {
   // }
 
   onSubmit() {
-    this.userService.login(this.user).subscribe({
+    this.userService.login(this.username, this.password).subscribe({
       next: (users) => {
         console.log(users)
+        this.router.navigate(['/']);
         //window.localStorage.setItem("token", token);
       },
       error: (error) => {
         console.error('error creating user:', error);
       }
-      
     });
     console.log('Username Or Email', this.usernameOrEmail);
     console.log('Password', this.password);

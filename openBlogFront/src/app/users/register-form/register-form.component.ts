@@ -18,12 +18,12 @@ export class RegisterFormComponent {
     this.UserService.register(this.username, this.email, this.password).subscribe({
       next: (users) => {
         console.log(users)
+        this.router.navigate(['/users']);
         //window.localStorage.setItem("token", token);
       },
       error: (error) => {
         console.error('error creating user:', error);
       }
-      
     });
     console.log('Username', this.username);
     console.log('email', this.email)

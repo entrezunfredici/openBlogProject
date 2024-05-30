@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-user-profile-form',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './user-profile-form.component.scss'
 })
 export class UserProfileFormComponent {
+  constructor(private router: Router, private userService: UsersService) { }
 
+  onSubmitProfile() {
+    console.log('onSubmit');
+  }
+  onSubmitDescription() {
+    console.log('onSubmit');
+  }
+  navigateToChangePassword() {
+    console.log("change password");
+    this.router.navigate(['/users/change_password']);
+  }
 }

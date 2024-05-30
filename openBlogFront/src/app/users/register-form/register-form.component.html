@@ -1,15 +1,15 @@
 <div class="form_section">
     <form id="register_form" (ngSubmit)="register()">
         <p>
-            <label>username</label>
+            <label for="username">username</label>
             <input type="text" name="username" [(ngModel)]="username" required/>
         </p>
         <p>
-            <label>email</label>
-            <input type="text" name="mail" [(ngModel)]="email" required/>
+            <label for="mail">email</label>
+            <input type="email" name="mail" [(ngModel)]="email" required/>
         </p>
         <p>
-            <label>password</label>
+            <label for="password">password</label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required/>
         </p>
         <button class="menu_button" type="submit">sign up</button>
