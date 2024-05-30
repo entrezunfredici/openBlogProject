@@ -1,14 +1,14 @@
 <div class="form_section">
     <form id="register_form" (ngSubmit)="register()">
-        <p>
+        <p class="standart_input">
             <label for="username">username</label>
             <input type="text" name="username" [(ngModel)]="username" required/>
         </p>
-        <p>
+        <p class="standart_input">
             <label for="mail">email</label>
             <input type="email" name="mail" [(ngModel)]="email" required/>
         </p>
-        <p>
+        <p class="standart_input">
             <label for="password">password</label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required/>
         </p>

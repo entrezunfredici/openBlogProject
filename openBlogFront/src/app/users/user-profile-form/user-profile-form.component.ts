@@ -23,4 +23,12 @@ export class UserProfileFormComponent {
     console.log("change password");
     this.router.navigate(['/users/change_password']);
   }
+  backToMenu() {
+    this.router.navigate(['/']);
+  }
+  logout() {
+    console.log('logOut');
+    //this.userService.logout();
+    this.router.navigate(['/']);
+  }
 }
