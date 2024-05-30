@@ -19,7 +19,10 @@ export class UsersService {
     return this.http.get<Users>(`${this.url}/username/${username}`);
   }
   isLoggedIn(): boolean {
-    return !!window.localStorage.getItem('token');
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
   }
   register(username: string, email: string, password: string): Observable<Users> {
     return this.http.post<Users>(`${this.url}/register`, {

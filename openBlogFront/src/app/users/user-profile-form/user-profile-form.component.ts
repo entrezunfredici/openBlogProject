@@ -9,7 +9,10 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserProfileFormComponent {
   constructor(private router: Router, private userService: UsersService) { }
-
+  Email: string = '';
+  password: string = '';
+  username: string = '';
+  description: string = '';
   onSubmitProfile() {
     console.log('onSubmit');
   }

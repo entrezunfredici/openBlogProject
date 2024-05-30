@@ -1,13 +1,16 @@
-<div class="configUSerRect">
+
+<div class="configUserRect">
     <form id="userProfileForm" (ngSubmit)="onSubmitProfile()">
         <div class="userProfileImage">
         </div>
-        <div class="input-group">
+        <p>
             <label for="username">Username</label>
-            <input type="text" id="username" formControlName="username">
+            <input type="text" name="username" [(ngModel)]="username" required/>
+        </p>
+        <p>
             <label for="email">Email</label>
-            <input type="email" id="email" formControlName="email">
-        </div> 
+            <input type="email" name="email" [(ngModel)]="Email">
+        </p>
         <button type="button" class="changePasswordButton" (click)="navigateToChangePassword()">change password</button>
         <button type="button" class="cancelButton">cancel</button>
         <button type="submit" class="confirmButton">save</button>
@@ -15,9 +18,8 @@
 </div>
 <div class="configUSerRect">
     <form id="userDescritpionForm" (ngSubmit)="onSubmitDescription()">
-        <label for="description">Description</label>
-        <input type="text" id="description" formControlName="description">
-        <button type="button" class="cancelButton">cancel</button>
-        <button type="submit" class="confirmButton">save</button>
+        <p><label for="description">Description</label></p>
+        <p><input type="text" id="description" [(ngModel)]="description"></p>
+        <button type="button" class="cancelButton">cancel</button><button type="submit" class="confirmButton">save</button>
     </form>
 </div>
