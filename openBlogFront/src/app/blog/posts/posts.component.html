@@ -1,32 +1,35 @@
-<section id="" class="posts">
-    <div class="creatorProfile">
-        <img id="avatarPhoto" class="avatarPhoto" src="" alt="Avatar">
-        <p id="creatorName" class="creatorName">Creator Name</p>
-    </div>
-    <div class="container">
-        <div id="title" class="title">
-            <p>Title</p>
+<!-- <div *ngFor="let post of posts"> -->
+    <section id="" class="posts">
+        <div class="creatorProfile">
+            <img id="avatarPhoto" class="avatarPhoto" src="{{posts.user.userPhoto}}" alt="Avatar">
+            <p id="creatorName" class="creatorName">{{posts.user.username || "user name loading errorr"}}</p>
         </div>
-        <div id="content" class="content">
-            <p>Text</p>
-        </div>
-        <div class="subjects_container">
-            <div class="horizontalSeparator"></div>
-            <div id="subjects" class="subjects">
-                <div class="rotatedSeparator"></div>
-                <p class="subject-text">subjects:</p>
-                <app-subjects-list></app-subjects-list>
+        <div class="container">
+            <div id="title" class="title">
+                <p>{{posts.title}}</p>
             </div>
-            <div class="littleHorizontalSeparator"></div>
+            <div id="content" class="content">
+                {{posts.content || "content loading error"}}
+            </div>
+            <div class="subjects_container">
+                <div class="horizontalSeparator"></div>
+                <div id="subjects" class="subjects">
+                    <div class="rotatedSeparator"></div>
+                    <p class="subject-text">subjects:</p>
+                    <app-subjects-list></app-subjects-list>
+                </div>
+                <div class="littleHorizontalSeparator"></div>
+            </div>
         </div>
-    </div>
-    <div id="menu" class="menu">
-        <button id="commentsButton" class="commentsButton">Comments</button>
-        <button id="reportButton" class="reportButton"><img class="like" src=""></button>
-        <button id="dislikeButton" class="dislikeButton"><img class="like" src=""></button>
-        <button id="likeButton" class="likeButton"><img class="like" src=""></button>
-    </div>
-    <div id="comments" class="comments invisible">
-        <app-comments-list></app-comments-list>
-    </div>
-</section>
+        <div id="menu" class="menu">
+            <button id="commentsButton" class="commentsButton">Comments</button>
+            <button id="reportButton" class="reportButton"><img class="like" src=""></button>
+            <button id="dislikeButton" class="dislikeButton"><img class="like" src=""></button>
+            <button id="likeButton" class="likeButton"><img class="like" src=""></button>
+        </div>
+        <div id="comments" class="comments invisible">
+            <app-comments-list></app-comments-list>
+        </div>
+    </section>
+<!-- </div> -->
+

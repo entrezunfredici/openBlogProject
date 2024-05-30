@@ -13,3 +13,25 @@ body {
     color: $fontLight;
 }
 
+//standart buttons
+.menu_button {
+    width: 90%;
+    height: 50px;
+    background-color: $defaultButtonBkgnd;
+    box-shadow: 0 5px 15px $defaultShadow;
+    color: $fontLight;
+    border: 2px solid $defaultBorderColor;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu_button:active {
+    background-color: $defaultActiveButton;
+    box-shadow: none;
+}
+
+.validate_button {
+    background-color: $success;
+}

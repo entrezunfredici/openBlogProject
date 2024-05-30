@@ -1,4 +1,5 @@
 @import '../../colors.scss';
+@import '../../styles.scss';
 
 .sidebar {
     background-color: $defaultNavBarBkgd;
@@ -57,22 +58,4 @@
 
 .is_invisible {
     display: none;
-}
-
-.sideBar_menu_button {
-    width: 90%;
-    height: 50px;
-    background-color: #000000;
-    box-shadow: 0 5px 15px #000000;
-    color: $fontLight;
-    border: 2px solid $defaultBorderColor;
-    border-radius: 25px;
-    margin: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.sideBar_menu_button:active {
-    background-color: #333333;
-    box-shadow: none;
 }

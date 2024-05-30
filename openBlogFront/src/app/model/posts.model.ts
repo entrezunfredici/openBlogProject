@@ -1,3 +1,4 @@
+import { Users } from './users.model'
 // posts.model.ts
 export interface Posts {
     id: number;
@@ -9,4 +10,5 @@ export interface Posts {
     nbDislikes: number;
     nbReports: number;
     nbViews: number;
+    user: Users;
 }
