@@ -62,6 +62,26 @@ exports.updateUser = async (id, userName, password, email, userPhoto, descriptio
     })
 }
 
+// exports.login = async (username, password) => {
+//     const user = await this.getUserByUsernameWithPassword(username);
+//     if (!user) {
+//         throw new NotFound('no user found for username: ' + username);
+//     }
+
+//     const verifiedUser = await bcrypt.compare(password, user.password);
+//     if (!verifiedUser) {
+//         throw new NotLogged('password incorrect for username');
+//     }
+//     console.log(user.id+" ; "+user.username);
+//     const token = jwt.sign({
+//         data: {id: user.id, username: user.username}
+//     }, process.env.SECRET, {
+//         expiresIn: '30s'
+//     });
+//     console.log(token);
+//     return token;
+// }
+
 exports.login = async (username, password) => {
     const user = await this.getUserByUsernameWithPassword(username);
     if (!user) {
@@ -72,13 +92,16 @@ exports.login = async (username, password) => {
     if (!verifiedUser) {
         throw new NotLogged('password incorrect for username');
     }
-    console.log(user.id+" ; "+user.username);
+
+    if (!process.env.SECRET) {
+        throw new Error('SECRET environment variable is not defined');
+    }
+
     const token = jwt.sign({
-        data: {id: user.id, username: user.username}
+        data: { id: user.id, username: user.username }
     }, process.env.SECRET, {
         expiresIn: '30s'
     });
-    console.log(token);
     return token;
 }
 

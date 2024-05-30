@@ -47,6 +47,19 @@ exports.register = async (req, res, next) => {
 //     }
 // }
 
+// exports.login = async (req, res, next) => {
+//     const { username, password } = req.body;
+//     try {
+//         const token = await usersService.login(username, password);
+//         if (token) {
+//             return res.status(200).json({ success: true, token });
+//         }
+//         return res.status(400).json({ success: false });
+//     } catch(error) {
+//         return next(createError(500, error));
+//     }
+// }
+
 exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     try {
@@ -58,7 +71,7 @@ exports.login = async (req, res, next) => {
     } catch(error) {
         return next(createError(500, error));
     }
-}
+};
 
 exports.getUserByUSername = async (req, res, next) => {
     try {
