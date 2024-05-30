@@ -18,8 +18,15 @@ export class UsersService {
   getPostByUsername(username: string): Observable<Users> { 
     return this.http.get<Users>(`${this.url}/username/${username}`);
   }
-  register(user: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.url}/register`, user);
+  isLoggedIn(): boolean {
+    return !!window.localStorage.getItem('token');
+  }
+  register(username: string, email: string, password: string): Observable<Users> {
+    return this.http.post<Users>(`${this.url}/register`, {
+      "username": username,
+      "password": password,
+      "email": email
+    });
   }
   login(user: Users): Observable<Users> {
     return this.http.post<Users>(`${this.url}/login`, user);

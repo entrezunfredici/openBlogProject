@@ -8,23 +8,49 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
-
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    return next.handle(request).pipe(
-      catchError((err) => {
-        if (err.status === 401) {
-          this.router.navigate(['/'])
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+          const token = localStorage.getItem('token');
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+      
+          return next.handle(request).pipe(
+            catchError((err) => {
+              if (err.status === 401) {
+                this.router.navigate(['/'])
+              }
+              throw err;
+            })
+          );
+        } else {
+            return next.handle(request);
         }
-        throw err;
-      })
-    );
-  }
+    }
 }
+
+// @Injectable()
+// export class AuthInterceptor implements HttpInterceptor {
+//   constructor(private router: Router) {}
+
+//   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//     const token = localStorage.getItem('token');
+
+//     request = request.clone({
+//       setHeaders: {
+//         Authorization: `Bearer ${token}`
+//       }
+//     });
+
+//     return next.handle(request).pipe(
+//       catchError((err) => {
+//         if (err.status === 401) {
+//           this.router.navigate(['/'])
+//         }
+//         throw err;
+//       })
+//     );
+//   }
+// }
