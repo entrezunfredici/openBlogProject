@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users } from '../model/users.model';
+import { Users, loginResponse } from '../model/users.model';
 
 
 @Injectable({
@@ -31,8 +31,8 @@ export class UsersService {
       "email": email
     });
   }
-  login(username: string, password: string): Observable<Users> {
-    return this.http.post<Users>(`${this.url}/login`,{
+  login(username: string, password: string): Observable<loginResponse> {
+    return this.http.post<loginResponse>(`${this.url}/login`,{
       "username": username,
       "password": password
     });

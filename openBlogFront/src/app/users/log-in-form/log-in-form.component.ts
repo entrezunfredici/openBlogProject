@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
-import { Users } from '../../model/users.model'
+import { Users, loginResponse } from '../../model/users.model'
 
 @Component({
   selector: 'app-log-in-form',
@@ -31,11 +31,19 @@ export class LogInFormComponent {
   // }
 
   onSubmit() {
+    // try{
+    //   this.token = this.userService.login(this.username, this.password);
+    //   console.log(this.token)
+    //   this.router.navigate(['/']);
+    //   localStorage.setItem("token", this.token);
+    // }catch (error){
+    //   console.error('error creating user:', error);
+    // }
     this.userService.login(this.username, this.password).subscribe({
-      next: (users) => {
-        console.log(users)
+      next: (response) => {
+        console.log(response)
         this.router.navigate(['/']);
-        //window.localStorage.setItem("token", token);
+        localStorage.setItem("token", response.token);
       },
       error: (error) => {
         console.error('error creating user:', error);
@@ -44,7 +52,6 @@ export class LogInFormComponent {
     console.log('Username Or Email', this.usernameOrEmail);
     console.log('Password', this.password);
     this.token = '';
-    //Windows.localStorage.setItem("token", token);
   }
 
   navigateToRegister() {
