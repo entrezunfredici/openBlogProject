@@ -39,7 +39,7 @@ export class LogInFormComponent {
     // }catch (error){
     //   console.error('error creating user:', error);
     // }
-    this.userService.login(this.username, this.password).subscribe({
+    this.userService.login(this.usernameOrEmail, this.password).subscribe({
       next: (response) => {
         console.log(response)
         this.router.navigate(['/']);

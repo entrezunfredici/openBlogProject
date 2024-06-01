@@ -32,6 +32,7 @@ export class UsersService {
     });
   }
   login(username: string, password: string): Observable<loginResponse> {
+    console.log(username, password);
     return this.http.post<loginResponse>(`${this.url}/login`,{
       "username": username,
       "password": password
