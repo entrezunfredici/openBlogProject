@@ -1,12 +1,18 @@
-<div id="form-section">
-    <form id="register-form" (ngSubmit)="register()">
-        <label>username</label>
-        <input type="text" name="username" [(ngModel)]="username" required/>
-        <label>email</label>
-        <input type="text" name="username" [(ngModel)]="username" required/>
-        <label>password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required/>
-        <button class="" type="submit">sign up</button>
+<div class="form_section">
+    <form id="register_form" (ngSubmit)="register()">
+        <p class="standart_input">
+            <label for="username">username</label>
+            <input type="text" name="username" [(ngModel)]="username" required/>
+        </p>
+        <p class="standart_input">
+            <label for="mail">email</label>
+            <input type="email" name="mail" [(ngModel)]="email" required/>
+        </p>
+        <p class="standart_input">
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" required/>
+        </p>
+        <button class="menu_button" type="submit">sign up</button>
     </form>
-    <button class="" (clic)="navigateToLogin()">login</button>
+    <button class="menu_button" (click)="navigateToLogin()">login</button>
 </div>

@@ -10,3 +10,8 @@ export interface Users {
     description: string;
     role: string;
 }
+
+export interface loginResponse {
+    success: boolean;
+    token: string;
+}

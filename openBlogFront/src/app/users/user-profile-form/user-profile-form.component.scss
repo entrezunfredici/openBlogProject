@@ -1,0 +1,50 @@
+@import '../../../colors.scss';
+@import '../users.component.scss';
+@import '../../../styles.scss';
+
+.configUserRect {
+    width: 80%;
+    height: 300px;
+    display: flex; /* Flexbox pour aligner les enfants horizontalement */
+    flex-direction: row; /* Aligne les éléments côte à côte */
+    justify-content: center;
+    background-color: $defaultElemColor;
+    color: $fontLight;
+    margin-top: 50px;
+    margin-left: 50px;
+    padding-top: 60px;
+    padding-left: 2%;
+    border: 1px solid $defaultBorderColor;
+}
+
+.inputContainer {
+    width: 80%;
+}
+
+.userProfileImage {
+    width: 20%;
+    height: 80%;
+    margin-left: 0;
+}
+
+.userProfileImage img {
+    width: 100%;
+    height: 100%;
+    border : 1px solid $defaultBorderColor;
+}
+
+.userDescritpionInput{
+    width:100%;
+    height: 70%;
+    margin-left: 0;
+}
+.userDescritpionInput label{
+    font-size: 20px;
+    text-align:center;
+}
+
+.userDescritpionInput input{
+    font-size: 20px;
+    width:100%;
+    height: 80%;
+}

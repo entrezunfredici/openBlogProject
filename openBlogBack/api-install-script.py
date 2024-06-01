@@ -35,7 +35,9 @@ commands= {
     "npm install bcrypt",
     "npm install http-errors",
     "npm install jsonwebtoken",
-    "npm install express-openapi-validator"
+    "npm install express-openapi-validator",
+    "npm install cors",
+    "npm install dotenv"
 }
 #inquirer is a library that allows you to ask questions to the user
 questions = [inquirer.List("choise", message="que voulez vous faire", choices=choises)]

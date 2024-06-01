@@ -1,0 +1,48 @@
+@import '../../colors.scss';
+@import '../../styles.scss';
+
+.form_section{
+    margin: 0 auto;
+    width:20%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    margin-bottom:auto;
+    background-color:$defaultFormColor;
+    align-items: center;
+    position: absolute; /* Positionnement absolu */
+    top: 50%; /* Positionné à 50% de la hauteur de son parent */
+    left: 50%; /* Positionné à 50% de la largeur de son parent */
+    transform: translate(-50%, -50%);
+}
+
+.form_standart_input{
+    width: 100%;
+    height: 50px;
+    background-color: $defaultButtonBkgnd;
+    box-shadow: 0 5px 15px $defaultShadow;
+    color: $fontLight;
+    border: 2px solid $defaultBorderColor;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.standart_input{
+    margin: 0 auto;
+    width:80%;
+    height:60px;
+    margin-top:20px;
+}
+
+.standart_input label{
+    font-size: 20px;
+    text-align:center;
+}
+
+.standart_input input{
+    font-size: 20px;
+    width:100%;
+}
+
