@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import { Users, loginResponse } from '../../model/users.model'
 
 @Component({
   selector: 'app-user-profile-form',
@@ -13,6 +14,7 @@ export class UserProfileFormComponent {
   password: string = '';
   username: string = '';
   description: string = '';
+  user: Users;
   onSubmitProfile() {
     console.log('onSubmit');
   }

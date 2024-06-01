@@ -1,13 +1,13 @@
 
 <form id="userProfileForm" (ngSubmit)="onSubmitProfile()" class="configUserRect">
     <div class="userProfileImage">
-        <img src="assets/images/user.png" alt="user image">
+        <img src="" alt="user image">
         <button type="button" class="tiny_button">change image</button>
     </div>
     <div class="inputContainer">
         <p class="standart_input">
             <label for="username">Username</label>
-            <input type="text" name="username" [(ngModel)]="username" required/>
+            <input type="text" name="username" [(ngModel)]="username" deflaut={{username}}/>
         </p>
         <p class="standart_input">
             <label for="email">Email</label>
