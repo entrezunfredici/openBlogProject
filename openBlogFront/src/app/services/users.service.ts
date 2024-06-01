@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Users, loginResponse } from '../model/users.model';
+import * as jwt_decode from 'jwt-decode';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
+  private tokenKey = 'authToken';
   url ='http://localhost:8000/users'
+  thisLoginResponse: loginResponse;
 
   constructor(private http: HttpClient) { }
   getUserById(id: number): Observable<Users> {
@@ -46,5 +48,20 @@ export class UsersService {
   }
   decreaseNbPosts(id: number, user: Users): Observable<Users> {
     return this.http.put<Users>(`${this.url}/decreaceNbPosts/id=${id}`, user);
+  }
+  // Méthode pour obtenir les informations de l'utilisateur depuis le token
+  getUserInfo(): any {
+    console.log("test");
+    const token = localStorage.getItem('token');
+    if (token) {
+      return jwt_decode.jwtDecode(token);
+    }
+    console.log("test");
+    return null;
+  }
+
+  // Méthode pour supprimer le token (déconnexion)
+  clearToken(): void {
+    localStorage.removeItem('token');
   }
 }

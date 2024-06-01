@@ -10,11 +10,14 @@ import { Users, loginResponse } from '../../model/users.model'
 })
 export class UserProfileFormComponent {
   constructor(private router: Router, private userService: UsersService) { }
+  userInfo: any = this.userService.getUserInfo();
   Email: string = '';
   password: string = '';
-  username: string = '';
+  username: string = this.userInfo.data.username;
   description: string = '';
   user: Users;
+  defaultUsername: string = this.userInfo.data.username;
+  //defaultEmail: string = this.userInfo.data.email;
   onSubmitProfile() {
     console.log('onSubmit');
   }
@@ -30,7 +33,7 @@ export class UserProfileFormComponent {
   }
   logout() {
     console.log('logOut');
-    //this.userService.logout();
+    this.userService.clearToken();
     this.router.navigate(['/']);
   }
 }

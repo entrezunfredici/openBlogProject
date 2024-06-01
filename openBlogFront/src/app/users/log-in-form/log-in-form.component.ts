@@ -14,31 +14,8 @@ export class LogInFormComponent {
   password: string = '';
   username: string = '';
   user: Users;
-  token: string = '';
-  // register() {
-  //   this.userService.login({username: this.username, password: this.password}).subscribe({
-  //     next: (users) => {
-  //       console.log(users)
-  //       //window.localStorage.setItem("token", token);
-  //     },
-  //     error: (error) => {
-  //       console.error('error creating user:', error);
-  //     }
-  //   });
-  //   console.log('Username', this.username);
-  //   console.log('email', this.email)
-  //   console.log('Password', this.password);
-  // }
 
   onSubmit() {
-    // try{
-    //   this.token = this.userService.login(this.username, this.password);
-    //   console.log(this.token)
-    //   this.router.navigate(['/']);
-    //   localStorage.setItem("token", this.token);
-    // }catch (error){
-    //   console.error('error creating user:', error);
-    // }
     this.userService.login(this.usernameOrEmail, this.password).subscribe({
       next: (response) => {
         console.log(response)
@@ -51,7 +28,6 @@ export class LogInFormComponent {
     });
     console.log('Username Or Email', this.usernameOrEmail);
     console.log('Password', this.password);
-    this.token = '';
   }
 
   navigateToRegister() {
