@@ -12,3 +12,9 @@ export interface Posts {
     nbViews: number;
     user: Users;
 }
+
+export interface PostsTemplate {
+    title: string;
+    content: string;
+    authorId: number;
+}

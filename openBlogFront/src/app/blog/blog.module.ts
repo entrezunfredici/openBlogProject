@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { BlogComponent } from './blog.component';
 import { PostsComponent } from './posts/posts.component';
@@ -28,7 +29,8 @@ import { SubjectsDetailComponent } from './subjects-detail/subjects-detail.compo
   ],
   imports: [
     CommonModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    FormsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

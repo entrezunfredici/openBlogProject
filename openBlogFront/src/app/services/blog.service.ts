@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Posts } from '../model/posts.model';
+import { Posts, PostsTemplate } from '../model/posts.model';
 import { Subject } from '../model/subjects.model';
 import { postsSubject } from '../model/postsSubjects.model';
 
@@ -39,8 +39,13 @@ export class BlogService {
   getSubjects(id: number): Observable<postsSubject[]> {
     return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`)
   }
-  createPost(post: Posts): Observable<Posts> {
-    return this.http.post<Posts>(`${this.postUrl}/create`, post);
+  createPost(title: string, content: string, authorId: number): Observable<PostsTemplate> {
+    console.log(title, content, authorId);
+    return this.http.post<Posts>(`${this.postUrl}/create`, {
+      "title": title, 
+      "content": content, 
+      "authorId": authorId
+    });
   }
   updatePost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/edit`, post);
