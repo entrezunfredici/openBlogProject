@@ -20,6 +20,7 @@ export class UserProfileFormComponent {
   //defaultEmail: string = this.userInfo.data.email;
   onSubmitProfile() {
     console.log('onSubmit');
+    console.log(this.userInfo)
   }
   onSubmitDescription() {
     console.log('onSubmit');
