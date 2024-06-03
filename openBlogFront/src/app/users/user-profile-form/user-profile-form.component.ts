@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
-import { Users, loginResponse } from '../../model/users.model'
+import { Users, loginResponse, updaterBody } from '../../model/users.model'
 
 @Component({
   selector: 'app-user-profile-form',
@@ -11,29 +11,30 @@ import { Users, loginResponse } from '../../model/users.model'
 export class UserProfileFormComponent {
   constructor(private router: Router, private userService: UsersService) { }
   userInfo: any = this.userService.getUserInfo();
-  Email: string = '';
-  password: string = '';
+  Email: string = this.userInfo.data.email;
   username: string = this.userInfo.data.username;
-  description: string = '';
+  description: string = this.userInfo.data.description;
+  userPhoto: string = this.userInfo.data.userPhoto;
   user: Users;
-  defaultUsername: string = this.userInfo.data.username;
-  //defaultEmail: string = this.userInfo.data.email;
-  onSubmitProfile() {
+  update: updaterBody;
+  onChangeUser() {
     console.log('onSubmit');
-    console.log(this.userInfo)
-  }
-  onSubmitDescription() {
-    console.log('onSubmit');
+    this.update= {
+      "username": this.username,
+      "email": this.Email,
+      "description": this.description,
+      "userPhoto": this.userPhoto
+    }
+    console.log(this.userService.updateUser(this.userInfo.data.id, this.update));
+    this.router.navigate(['/']);
   }
   navigateToChangePassword() {
-    console.log("change password");
     this.router.navigate(['/users/change_password']);
   }
   backToMenu() {
     this.router.navigate(['/']);
   }
   logout() {
-    console.log('logOut');
     this.userService.clearToken();
     this.router.navigate(['/']);
   }
