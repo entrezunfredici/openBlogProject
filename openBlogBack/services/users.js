@@ -55,8 +55,20 @@ exports.addUser = async (username, password, email) => {
 
 exports.updateUser = async (id, userName, password, email, userPhoto, description) => {
     const user= await users.findOne({ where: { id } })
+    const verifiedUser = await bcrypt.compare(password, user.password);
+    if (!verifiedUser) {
+        throw new NotLogged('password incorrect for username');
+    }
+    return user.update({ userName, email, userPhoto, description })
+}
+
+exports.updatePassword = async (id, password, confirmPassword) => {
+    const user= await users.findOne({ where: { id } })
+    if(password !== confirmPassword) {
+        throw new BadRequest('passwords do not match')
+    }
     return bcrypt.hash(password, 10).then((hash) => {
-        return user.update({ userName, password: hash, email, userPhoto, description })
+        return user.update({password: hash})
     }).catch((e) => {
         throw new ServerError('Error when performing bcrypt: ', e.message)
     })
