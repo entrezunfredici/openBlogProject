@@ -28,7 +28,7 @@ exports.register = async (req, res, next) => {
         if (!user) {
             throw new ServerError('Cannot register user')
         }
-        return res.status(201).json({success: true}).send()
+        return res.status(201).json(true).send()
     } catch(e) {
         return next(createError(e.statusCode, e.message))
     }
@@ -41,7 +41,7 @@ exports.login = async (req, res, next) => {
         if (token) {
             return res.status(200).json({ success: true, token });
         }
-        return res.status(400).json({ success: false });
+        return res.status(400).json({ success: false, token: ''});
     } catch(error) {
         return next(createError(500, error));
     }
@@ -54,7 +54,7 @@ exports.getUserByUSername = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -67,7 +67,7 @@ exports.getUserById = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -80,7 +80,7 @@ exports.getUserWithPosts = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
-        res.json({ success: true, user });
+        res.json(user);
     } catch (error) {
         next(error);
     }
@@ -94,7 +94,21 @@ exports.updateUser = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.updatePassword = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const {password, confirmPassword} = req.body;
+        const user = await usersService.updatePassword(userId, password, confirmPassword);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -107,7 +121,7 @@ exports.increaceNbPosts = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -120,7 +134,7 @@ exports.increaceNbFollowers = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -133,7 +147,7 @@ exports.decreaceNbFollowers = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
@@ -146,7 +160,7 @@ exports.decreaceNbPosts = async (req, res, next) => {
         if (!user) {
             throw createError(404, 'User not found');
         }
-        res.json({success: true, user});
+        res.json(user);
     } catch (error) {
         next(new ServerError());
     }
