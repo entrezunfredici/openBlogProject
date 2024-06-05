@@ -11,22 +11,30 @@ import { Users, loginResponse, updaterBody } from '../../model/users.model'
 export class UserProfileFormComponent {
   constructor(private router: Router, private userService: UsersService) { }
   userInfo: any = this.userService.getUserInfo();
-  Email: string = this.userInfo.data.email;
-  username: string = this.userInfo.data.username;
-  description: string = this.userInfo.data.description;
+  Email: string = "";
+  username: string = "";
+  description: string = "";
   userPhoto: string = this.userInfo.data.userPhoto;
+  password: string = "";
   user: Users;
   update: updaterBody;
+  defaultPhoto: string = this.userInfo.data.userPhoto;
+  defaultDescription: string = this.userInfo.data.description;
+  defaultEmail: string = this.userInfo.data.email;
+  defaultUsername: string = this.userInfo.data.username;
   onChangeUser() {
+    console.log(this.userInfo.data);
     console.log('onSubmit');
     this.update= {
       "username": this.username,
+      "password": this.password,
       "email": this.Email,
       "description": this.description,
       "userPhoto": this.userPhoto
-    }
+    };
+    console.log(this.update);
     console.log(this.userService.updateUser(this.userInfo.data.id, this.update));
-    this.router.navigate(['/']);
+    //this.router.navigate(['/']);
   }
   navigateToChangePassword() {
     this.router.navigate(['/users/change_password']);

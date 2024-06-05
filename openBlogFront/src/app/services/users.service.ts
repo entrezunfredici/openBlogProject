@@ -40,9 +40,10 @@ export class UsersService {
       "password": password
     });
   }
-  updateUser(id: number, update: updaterBody): Observable<usersResponse> {
+  updateUser(id: number, update: updaterBody): Observable<Users> {
+    console.log("ok")
     console.log(update)
-    return this.http.post<usersResponse>(`${this.url}/${id}`, update);
+    return this.http.post<Users>(`${this.url}/${id}`, update);
   }
   increaceNbPosts(id: number, user: Users): Observable<Users> {
     return this.http.put<Users>(`${this.url}/increaceNbComments/id=${id}`, user);

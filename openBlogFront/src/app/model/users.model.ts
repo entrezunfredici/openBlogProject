@@ -23,6 +23,7 @@ export interface loginResponse {
 
 export interface updaterBody{
     username: string;
+    password: string;
     userPhoto: string;
     email: string;
     description: string;
