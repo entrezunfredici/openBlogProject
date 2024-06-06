@@ -53,13 +53,13 @@ exports.addUser = async (username, password, email) => {
     })
 }
 
-exports.updateUser = async (id, userName, password, email, userPhoto, description) => {
+exports.updateUser = async (id, username, password, email, userPhoto, description) => {
     const user= await users.findOne({ where: { id } })
     const verifiedUser = await bcrypt.compare(password, user.password);
     if (!verifiedUser) {
         throw new NotLogged('password incorrect for username');
     }
-    return user.update({ userName, email, userPhoto, description })
+    return user.update({ username, email, userPhoto, description })
 }
 
 exports.updatePassword = async (id, password, confirmPassword) => {

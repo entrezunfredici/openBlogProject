@@ -23,18 +23,24 @@ export class UserProfileFormComponent {
   defaultEmail: string = this.userInfo.data.email;
   defaultUsername: string = this.userInfo.data.username;
   onChangeUser() {
-    console.log(this.userInfo.data);
-    console.log('onSubmit');
-    this.update= {
-      "username": this.username,
-      "password": this.password,
-      "email": this.Email,
-      "description": this.description,
-      "userPhoto": this.userPhoto
+    console.log("User info:", this.userInfo.data);
+    this.update = {
+      username: this.username || this.defaultUsername,
+      password: this.password,
+      email: this.Email || this.defaultEmail,
+      description: this.description || this.defaultDescription,
+      userPhoto: this.userPhoto || this.defaultPhoto
     };
-    console.log(this.update);
-    console.log(this.userService.updateUser(this.userInfo.data.id, this.update));
-    //this.router.navigate(['/']);
+    console.log("Update payload:", this.update);
+    this.userService.updateUser(this.userInfo.data.id, this.update).subscribe(
+      response => {
+        console.log("Update response:", response);
+      },
+      error => {
+        console.error("Update error:", error);
+      }
+    );
+    this.backToMenu();
   }
   navigateToChangePassword() {
     this.router.navigate(['/users/change_password']);
