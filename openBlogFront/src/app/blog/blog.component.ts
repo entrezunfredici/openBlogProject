@@ -12,7 +12,6 @@ export class BlogComponent implements OnInit {
   ngOnInit(){
     this.BlogService.getPosts().subscribe({
       next: (posts) => {
-        console.log(posts)
       },
       error: (error) => {
         console.error('Une erreur s\'est produite :', error);

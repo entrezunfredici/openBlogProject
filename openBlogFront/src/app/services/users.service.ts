@@ -34,16 +34,13 @@ export class UsersService {
     });
   }
   login(username: string, password: string): Observable<loginResponse> {
-    console.log(username, password);
     return this.http.post<loginResponse>(`${this.url}/login`,{
       "username": username,
       "password": password
     });
   }
-  updateUser(id: number, update: updaterBody): Observable<Users> {
-    console.log("ok")
-    console.log(update)
-    return this.http.post<Users>(`${this.url}/${id}`, update);
+  updateUser(id: number, update: updaterBody): Observable<string> {
+    return this.http.post<string>(`${this.url}/${id}`, update);
   }
   increaceNbPosts(id: number, user: Users): Observable<Users> {
     return this.http.put<Users>(`${this.url}/increaceNbComments/id=${id}`, user);
@@ -53,12 +50,10 @@ export class UsersService {
   }
   // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
-    console.log("test");
     const token = localStorage.getItem('token');
     if (token) {
       return jwt_decode.jwtDecode(token);
     }
-    console.log("test");
     return null;
   }
 

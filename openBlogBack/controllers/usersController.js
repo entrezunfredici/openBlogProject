@@ -90,11 +90,11 @@ exports.updateUser = async (req, res, next) => {
     try {
         const userId = req.params.id;
         const {username, password, email, userPhoto, description} = req.body;
-        const user = await usersService.updateUser(userId, username, password, email, userPhoto, description);
-        if (!user) {
+        const token = await usersService.updateUser(userId, username, password, email, userPhoto, description);
+        if (!token) {
             throw createError(404, 'User not found');
         }
-        res.json(user);
+        res.json(token);
     } catch (error) {
         next(new ServerError());
     }

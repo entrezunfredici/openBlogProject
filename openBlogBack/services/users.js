@@ -59,7 +59,8 @@ exports.updateUser = async (id, username, password, email, userPhoto, descriptio
     if (!verifiedUser) {
         throw new NotLogged('password incorrect for username');
     }
-    return user.update({ username, email, userPhoto, description })
+    user.update({ username, email, userPhoto, description })
+    return this.createToken(user);
 }
 
 exports.updatePassword = async (id, password, confirmPassword) => {
@@ -84,17 +85,19 @@ exports.login = async (username, password) => {
     if (!verifiedUser) {
         throw new NotLogged('password incorrect for username');
     }
+    return this.createToken(user);
+}
 
+exports.createToken = async (user) => {
     if (!process.env.SECRET) {
         throw new Error('SECRET environment variable is not defined');
     }
 
-    const token = jwt.sign({
+    return jwt.sign({
         data: { id: user.id, username: user.username, email: user.email, description: user.description, userPhoto: user.userPhoto}
     }, process.env.SECRET, {
         expiresIn: '30s'
     });
-    return token;
 }
 
 exports.updateUserRôle = async (id, role) => {

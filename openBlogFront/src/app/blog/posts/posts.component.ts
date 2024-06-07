@@ -10,7 +10,6 @@ import { BlogService } from '../../services/blog.service';
 export class PostsComponent {
   @Input() posts: Posts;
   ngOnInit(){
-    if(this.posts)console.log(this.posts.id)
   }
 }
 

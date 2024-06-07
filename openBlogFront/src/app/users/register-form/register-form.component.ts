@@ -17,7 +17,6 @@ export class RegisterFormComponent {
   register() {
     this.UserService.register(this.username, this.email, this.password).subscribe({
       next: (users) => {
-        console.log(users)
         this.router.navigate(['/users']);
         //window.localStorage.setItem("token", token);
       },
@@ -25,13 +24,9 @@ export class RegisterFormComponent {
         console.error('error creating user:', error);
       }
     });
-    console.log('Username', this.username);
-    console.log('email', this.email)
-    console.log('Password', this.password);
   }
 
   navigateToLogin() {
-    console.log("login");
     this.router.navigate(['/users']);
   }
 }

@@ -40,7 +40,6 @@ export class BlogService {
     return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`)
   }
   createPost(title: string, content: string, authorId: number): Observable<PostsTemplate> {
-    console.log(title, content, authorId);
     return this.http.post<Posts>(`${this.postUrl}/create`, {
       "title": title, 
       "content": content, 

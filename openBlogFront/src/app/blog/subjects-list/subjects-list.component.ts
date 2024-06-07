@@ -12,11 +12,9 @@ export class SubjectsListComponent {
   constructor(private BlogService :BlogService) { }
   postSubjects: postsSubject[] = [];
   ngOnInit(){
-    console.log(this.number)
     this.BlogService.getSubjects(this.number).subscribe({
       next: (postsSubject) => {
         this.postSubjects = postsSubject;
-        console.log(this.postSubjects)
       },
       error: (error) => {
         console.error('Une erreur s\'est produite :', error);

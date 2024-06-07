@@ -18,7 +18,6 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" [(ngModel)]="password"/>
             </p>
-            <button type="button" class="standart_buttons" (click)="navigateToChangePassword()">change password</button>
         </div>
     </div>
     <div class="configUserRect" id="userDescritpionForm" >
@@ -28,10 +27,11 @@
         </p>
         
     </div>
-    <div class="configUserRect" id="userDescritpionForm" >
+    <div class="buttonsZone" id="userDescritpionForm" >
         <button type="button" class="cancel_button">cancel</button>
-        <button type="submit" class="confirm_button">save</button>
-        <button class="standart_buttons" (click)="backToMenu()">Back</button>
         <button class="cancel_button" (click)="logout()">Logout</button>
+        <button class="standart_buttons" (click)="backToMenu()">Back</button>
+        <button type="button" class="standart_buttons" (click)="navigateToChangePassword()">change password</button>
+        <button type="submit" class="confirm_button">save</button>
     </div>
 </form>

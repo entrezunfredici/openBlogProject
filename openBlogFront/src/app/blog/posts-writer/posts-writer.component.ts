@@ -24,7 +24,6 @@ export class PostsWriterComponent {
     }
     this.blogService.createPost(this.postTitle, this.postContent, this.userInfo.data.id).subscribe({
       next: (posts) => {
-        console.log(posts)
         this.router.navigate(['/']);
       },
       error: (error) => {
