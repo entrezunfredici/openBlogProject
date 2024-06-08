@@ -18,7 +18,6 @@ export class LogInFormComponent {
   onSubmit() {
     this.userService.login(this.usernameOrEmail, this.password).subscribe({
       next: (response) => {
-        console.log(response)
         this.router.navigate(['/']);
         localStorage.setItem("token", response.token);
       },
@@ -26,16 +25,12 @@ export class LogInFormComponent {
         console.error('error creating user:', error);
       }
     });
-    console.log('Username Or Email', this.usernameOrEmail);
-    console.log('Password', this.password);
   }
 
   navigateToRegister() {
-    console.log("register");
     this.router.navigate(['/users/register']);
   }
   navigateToChangePassword() {
-    console.log("change password");
     this.router.navigate(['/users/change_password']);
   }
 }

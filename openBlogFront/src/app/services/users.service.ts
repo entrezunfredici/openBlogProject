@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users, loginResponse } from '../model/users.model';
+import { Users, loginResponse, updaterBody, usersResponse} from '../model/users.model';
 import * as jwt_decode from 'jwt-decode';
 
 
@@ -34,14 +34,13 @@ export class UsersService {
     });
   }
   login(username: string, password: string): Observable<loginResponse> {
-    console.log(username, password);
     return this.http.post<loginResponse>(`${this.url}/login`,{
       "username": username,
       "password": password
     });
   }
-  updateUser(id: number, user: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.url}/${id}`, user);
+  updateUser(id: number, update: updaterBody): Observable<string> {
+    return this.http.post<string>(`${this.url}/${id}`, update);
   }
   increaceNbPosts(id: number, user: Users): Observable<Users> {
     return this.http.put<Users>(`${this.url}/increaceNbComments/id=${id}`, user);
@@ -51,12 +50,10 @@ export class UsersService {
   }
   // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
-    console.log("test");
     const token = localStorage.getItem('token');
     if (token) {
       return jwt_decode.jwtDecode(token);
     }
-    console.log("test");
     return null;
   }
 

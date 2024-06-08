@@ -17,6 +17,21 @@
     border: 1px solid $defaultBorderColor;
 }
 
+.buttonsZone {
+    width: 80%;
+    height: 100px;
+    display: flex; /* Flexbox pour aligner les enfants horizontalement */
+    flex-direction: row; /* Aligne les éléments côte à côte */
+    justify-content: center;
+    background-color: $defaultElemColor;
+    color: $fontLight;
+    margin-top: 50px;
+    margin-left: 50px;
+    padding-top: 30px;
+    padding-left: 2%;
+    border: 1px solid $defaultBorderColor;
+}
+
 .inputContainer {
     width: 80%;
 }
