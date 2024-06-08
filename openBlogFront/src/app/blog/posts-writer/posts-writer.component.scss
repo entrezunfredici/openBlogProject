@@ -37,9 +37,10 @@
 #postPaper textarea{
     width: 90%;
     height: 80%;
-    border: 1px solid $defaultBorderColor;
+    border: 1px solid $copper;
     border-radius: 5px;
     background-color: $defaultElemColor;
+    color: $white;
     padding: 10px;
     margin: 10px;
     display: flex;

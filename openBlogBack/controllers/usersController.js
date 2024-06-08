@@ -114,10 +114,10 @@ exports.updatePassword = async (req, res, next) => {
     }
 }
 
-exports.increaceNbPosts = async (req, res, next) => {
+exports.increaseNbPosts = async (req, res, next) => {
     try {
         const userId = req.params.id;
-        const user = await usersService.increaceNbPosts(userId);
+        const user = await usersService.increaseNbPosts(userId);
         if (!user) {
             throw createError(404, 'User not found');
         }
@@ -127,10 +127,10 @@ exports.increaceNbPosts = async (req, res, next) => {
     }
 }
 
-exports.increaceNbFollowers = async (req, res, next) => {
+exports.increaseNbFollowers = async (req, res, next) => {
     try {
         const userId = req.params.id;
-        const user = await usersService.increaceNbFollowers(userId);
+        const user = await usersService.increaseNbFollowers(userId);
         if (!user) {
             throw createError(404, 'User not found');
         }

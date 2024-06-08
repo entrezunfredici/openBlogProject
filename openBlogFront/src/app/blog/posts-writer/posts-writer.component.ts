@@ -16,7 +16,7 @@ export class PostsWriterComponent {
   authorName: number = this.userInfo.name;
   postTitle: string = '';
   postContent: string = '';
-  user: Users = this.usersService.getUserById(this.userInfo.data.id);
+  user: Users;
   createPost(){
     if((this.postTitle === '') || (this.postContent === '')) {
       alert('Please fill in all fields');
@@ -30,9 +30,9 @@ export class PostsWriterComponent {
         console.error('error creating post:', error);
       }
     });
-    this.usersService.increaceNbPosts(this.userInfo.data.id, this.user).subscribe({
+    this.usersService.increaseNbPosts(this.userInfo.data.id).subscribe({
       next: (user) => {
-        console.log('nbPosts increased');
+        //console.log(result);
       },
       error: (error) => {
         console.error('error increasing nbPosts:', error);
