@@ -2,7 +2,7 @@
     <div id="sideBar_profile_id" class="sideBar_profile" (click)="navigateToUsersInterface()">
         <img id="sideBar_profile_image" src="" alt="profile image">
         <h2 id="sideBar_profile_name">
-            
+            <p>{{username || "connect?"}}</p>
         </h2>
     </div>
     <div class="sideBar_menu">
@@ -15,4 +15,3 @@
         
     </div>
 </div>
-<script src="./menu.js"></script>

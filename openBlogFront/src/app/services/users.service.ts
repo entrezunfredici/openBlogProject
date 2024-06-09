@@ -50,9 +50,15 @@ export class UsersService {
   }
   // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return jwt_decode.jwtDecode(token);
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('token');
+      try {
+        console.log('Decoded token:', jwt_decode.jwtDecode(token));
+        return jwt_decode.jwtDecode(token);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
     }
     return null;
   }
