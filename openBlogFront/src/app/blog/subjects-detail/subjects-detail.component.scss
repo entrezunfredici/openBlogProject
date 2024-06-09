@@ -1,0 +1,14 @@
+@import '../../../colors.scss';
+.subject{
+    background-color: $success;
+    width:100px;
+    height:25px;
+    text-align: center;
+    border-radius:50px;
+    float: left;
+    margin-top:0px;
+    margin-left:10px
+}
+.subjectText{
+    margin-top:5px;
+}

@@ -1,7 +1,8 @@
 
 //classical colors
 $blue: #007bff;
-$darkBlue: #000080;
+$darkBlue: #000040;
+$navyBlue: #000080;
 $red: #dc3545;
 $green: #28a745;
 $yellow: #ffc107;
@@ -35,8 +36,10 @@ $fontDark: #343a40;
 //default colors sets:
 $defaultMainBkgd:$darkBlue;
 $defaultNavBarBkgd:$charcoalGray;
+$defaultElemColor:$charcoalGray;
 $defaultBorderColor:$chromeGray;
 $defaultShadow:$black;
+$defaultFormColor:$navyBlue;
 $defaultButtonBkgnd:$black;
 $defaultActiveButton:$charcoalGray;
 

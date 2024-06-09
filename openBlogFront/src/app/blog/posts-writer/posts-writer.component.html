@@ -1,1 +1,17 @@
-<p>posts-writer works!</p>
+<form id="postWrite" (ngSubmit)="createPost()" class="container">
+    <div id="postKit">
+        <p>test</p>
+    </div>
+    <div id="postPaper">
+        <p class="titleZone">
+            <label for="postTitle">title</label>
+            <input type="text" placeholder="Title" name="postTitle" [(ngModel)]="postTitle" required/>
+        </p>
+        <textarea id="postContent" placeholder="Content" [(ngModel)]="postContent" name="postContent" required></textarea>
+    </div>
+    <div id="subjectsForm">
+        <!-- <select name="subjects[]" id="subjects" multiple></select> -->
+    </div>
+    <button class="confirm_button" type="submit">post</button>
+    <button class="cancel_button" (click)="navigateToMain()">cancel</button>
+</form> 

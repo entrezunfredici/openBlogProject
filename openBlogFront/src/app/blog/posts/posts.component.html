@@ -16,7 +16,7 @@
                 <div id="subjects" class="subjects">
                     <div class="rotatedSeparator"></div>
                     <p class="subject-text">subjects:</p>
-                    <app-subjects-list></app-subjects-list>
+                    <app-subjects-list *ngIf="posts.id"[number]="posts.id"></app-subjects-list>
                 </div>
                 <div class="littleHorizontalSeparator"></div>
             </div>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
+import { Users, loginResponse } from '../../model/users.model'
 
 @Component({
   selector: 'app-log-in-form',
@@ -7,21 +9,28 @@ import { Router } from '@angular/router';
   styleUrl: './log-in-form.component.scss'
 })
 export class LogInFormComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UsersService) { }
   usernameOrEmail: string = '';
   password: string = '';
+  username: string = '';
+  user: Users;
 
   onSubmit() {
-    console.log('Username Or Email', this.usernameOrEmail);
-    console.log('Password', this.password);
+    this.userService.login(this.usernameOrEmail, this.password).subscribe({
+      next: (response) => {
+        this.router.navigate(['/']);
+        localStorage.setItem("token", response.token);
+      },
+      error: (error) => {
+        console.error('error creating user:', error);
+      }
+    });
   }
 
   navigateToRegister() {
-    console.log("register");
-    this.router.navigate(['/register']);
+    this.router.navigate(['/users/register']);
   }
   navigateToChangePassword() {
-    console.log("change password");
-    this.router.navigate(['/change_password']);
+    this.router.navigate(['/users/change_password']);
   }
 }

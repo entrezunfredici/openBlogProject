@@ -1,0 +1,54 @@
+@import '../../../colors.scss';
+@import '../../../styles.scss';
+.container{
+    position: absolute;
+    top: 50%;
+    left: (50%-5%);
+    transform: translate(-50%, -50%);
+    width:80%;
+    height:90vh;
+    border: 1px solid $defaultBorderColor;
+    border-radius: 5px;
+    background-color: $defaultElemColor;
+    align-items: center;
+}
+
+#postkit{
+    width:100%;
+    height:20%;
+    display: flex;
+}
+
+#postPaper{
+    margin: 2%;
+    width: 96%;
+    height: 70%;
+    border: 1px solid $defaultBorderColor;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: $white;
+    color: $black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#postPaper textarea{
+    width: 90%;
+    height: 80%;
+    border: 1px solid $defaultBorderColor;
+    border-radius: 5px;
+    background-color: $defaultElemColor;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+}
+
+#titleZone{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

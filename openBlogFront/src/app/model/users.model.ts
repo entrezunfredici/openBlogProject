@@ -10,3 +10,21 @@ export interface Users {
     description: string;
     role: string;
 }
+
+export interface usersResponse{
+    success: boolean;
+    user: Users;
+}
+
+export interface loginResponse {
+    success: boolean;
+    token: string;
+}
+
+export interface updaterBody{
+    username: string;
+    password: string;
+    userPhoto: string;
+    email: string;
+    description: string;
+}

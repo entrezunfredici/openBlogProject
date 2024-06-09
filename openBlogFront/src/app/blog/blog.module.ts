@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { BlogComponent } from './blog.component';
 import { PostsComponent } from './posts/posts.component';
@@ -11,6 +12,8 @@ import { CommentsDetailComponent } from './comments-detail/comments-detail.compo
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SubjectsListComponent } from './subjects-list/subjects-list.component';
+import { SubjectsDetailComponent } from './subjects-detail/subjects-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,14 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     PostListComponent,
     CommentsListComponent,
     CommentsDetailComponent,
-    SidebarComponent
+    SidebarComponent,
+    SubjectsListComponent,
+    SubjectsDetailComponent
   ],
   imports: [
     CommonModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    FormsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

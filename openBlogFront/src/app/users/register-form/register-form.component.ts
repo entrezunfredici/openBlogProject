@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
+import { Users } from '../../model/users.model'
 
 @Component({
   selector: 'app-register-form',
@@ -7,18 +9,24 @@ import { Router } from '@angular/router';
   styleUrl: './register-form.component.scss'
 })
 export class RegisterFormComponent {
-  constructor(private router: Router) { }
-  username: string = '';
-  email: string = '';
-  password: string = '';
-
+  constructor(private router: Router, private UserService :UsersService) { }
+  username: string;
+  email: string;
+  password: string;
+  newUser: Users;
   register() {
-    console.log('Username', this.username);
-    console.log('Password', this.password);
+    this.UserService.register(this.username, this.email, this.password).subscribe({
+      next: (users) => {
+        this.router.navigate(['/users']);
+        //window.localStorage.setItem("token", token);
+      },
+      error: (error) => {
+        console.error('error creating user:', error);
+      }
+    });
   }
 
   navigateToLogin() {
-    console.log("login");
-    this.router.navigate(['/']);
+    this.router.navigate(['/users']);
   }
 }

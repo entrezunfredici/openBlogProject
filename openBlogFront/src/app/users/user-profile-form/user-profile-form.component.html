@@ -1,1 +1,37 @@
-<p>user-profile-form works!</p>
+
+<form (ngSubmit)="onChangeUser()">
+    <div id="userProfileForm" class="configUserRect">
+        <div class="userProfileImage">
+            <img src="" alt="user image">
+            <button type="button" class="tiny_button">change image</button>
+        </div>
+        <div class="inputContainer">
+            <p class="standart_input">
+                <label for="username">Username</label>
+                <input type="text" name="username" [(ngModel)]="username" placeholder="{{defaultUsername}}"/>
+            </p>
+            <p class="standart_input">
+                <label for="email">Email</label>
+                <input type="email" name="email" [(ngModel)]="Email" placeholder="{{defaultEmail}}">
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password" [(ngModel)]="password"/>
+            </p>
+        </div>
+    </div>
+    <div class="configUserRect" id="userDescritpionForm" >
+        <p class="userDescritpionInput">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" [(ngModel)]="description" name="description"></textarea>
+        </p>
+        
+    </div>
+    <div class="buttonsZone" id="userDescritpionForm" >
+        <button type="button" class="cancel_button">cancel</button>
+        <button class="cancel_button" (click)="logout()">Logout</button>
+        <button class="standart_buttons" (click)="backToMenu()">Back</button>
+        <button type="button" class="standart_buttons" (click)="navigateToChangePassword()">change password</button>
+        <button type="submit" class="confirm_button">save</button>
+    </div>
+</form>
