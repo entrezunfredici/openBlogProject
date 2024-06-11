@@ -4,6 +4,7 @@ import { LogInFormComponent } from './log-in-form/log-in-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { UserProfileFormComponent } from './user-profile-form/user-profile-form.component';
+import { UserProfileViewComponent } from './user-profile-view/user-profile-view.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
         path: 'config',
         component: UserProfileFormComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'thisUser/:id',
+        component: UserProfileViewComponent,
     }
 ];
 

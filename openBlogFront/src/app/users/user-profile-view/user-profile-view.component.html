@@ -1,1 +1,28 @@
-<p>user-profile-view works!</p>
+<div id="TopBar">
+    <div id="topBarLeftSection">
+        <img src=""/>
+        <button type="button" class="standart_buttons" (click)="backToMenu()">main menu</button>
+        <button type="button" class="standart_buttons" (click)="followUser">follow</button>
+    </div>
+    <div id="topBarRightSection">
+        <h1>
+            {{user.username}}#{{user.id}}
+        </h1>
+        <div class="userAttributeList">
+            <p class="userAttribute">
+                {{user.followers}} followers
+            </p>
+            <p class="userAttribute">
+                {{user.nbPosts}} nbPosts
+            </p>
+        </div>
+        <p>
+            {{user.description}}
+        </p>
+        <section>
+            <p>
+
+            </p>
+        </section>
+    </div>
+</div>
