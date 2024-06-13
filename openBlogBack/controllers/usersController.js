@@ -86,6 +86,19 @@ exports.getUserWithPosts = async (req, res, next) => {
     }
 };
 
+exports.getRole = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const role = await usersService.getRole(userId);
+        if (!role) {
+            throw createError(404, 'User not found');
+        }
+        res.json(role);
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
 exports.updateUser = async (req, res, next) => {
     try {
         const userId = req.params.id;
@@ -105,6 +118,20 @@ exports.updatePassword = async (req, res, next) => {
         const userId = req.params.id;
         const {password, confirmPassword} = req.body;
         const user = await usersService.updatePassword(userId, password, confirmPassword);
+        if (!user) {
+            throw createError(404, 'User not found');
+        }
+        res.json(user);
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.updateUserRôle = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const {role, updaterId} = req.body;
+        const user = await usersService.updateUserRôle(userId, updaterId, role);
         if (!user) {
             throw createError(404, 'User not found');
         }

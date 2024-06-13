@@ -41,6 +41,11 @@ exports.getUserWithPosts = async (userId) => {
     });
 };
 
+exports.getRole = async (id) => {
+    const user = await users.findOne({ where: { id } })
+    return user.role
+}
+
 exports.addUser = async (username, password, email) => {
     const existingUser = await this.getUserByUsername(username)
     if (existingUser) {
@@ -100,7 +105,10 @@ exports.createToken = async (user) => {
     });
 }
 
-exports.updateUserRôle = async (id, role) => {
+exports.updateUserRôle = async (id, idUpdater, role) => {
+    if (await this.getRôle(idUpdater) !== 'admin') {
+        throw new NotLogged('user not allowed to update role')
+    }
     return users.update({ role }, { where: { id } })
 }
 
