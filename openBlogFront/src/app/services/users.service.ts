@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users, loginResponse, updaterBody, usersResponse, updateResponse} from '../model/users.model';
+import { Users, loginResponse, updaterBody, usersResponse, updateResponse, UsersWithoutPassword} from '../model/users.model';
 import * as jwt_decode from 'jwt-decode';
 
 
@@ -14,8 +14,8 @@ export class UsersService {
   thisLoginResponse: loginResponse;
 
   constructor(private http: HttpClient) { }
-  getUserById(id: number): Observable<Users> {
-    return this.http.get<Users>(`${this.url}/id/${id}`);
+  getUserById(id: number): Observable<UsersWithoutPassword> {
+    return this.http.get<UsersWithoutPassword>(`${this.url}/id/${id}`);
   }
   getPostByUsername(username: string): Observable<Users> { 
     return this.http.get<Users>(`${this.url}/username/${username}`);
