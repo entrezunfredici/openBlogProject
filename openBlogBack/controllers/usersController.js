@@ -127,19 +127,35 @@ exports.updatePassword = async (req, res, next) => {
     }
 }
 
-exports.updateUserRôle = async (req, res, next) => {
+exports.updateUserRole = async (req, res, next) => {
+    console.log("Entrée dans updateUserRole");
     try {
-        const userId = req.params.id;
-        const {role, updaterId} = req.body;
-        const user = await usersService.updateUserRôle(userId, updaterId, role);
+        const { userId, role, updaterId } = req.body;
+        console.log(`userId: ${userId}, role: ${role}, updaterId: ${updaterId}`);
+
+        const updaterRole = await usersService.getRole(updaterId);
+        console.log(`updaterRole: ${updaterRole}`);
+        if (updaterRole !== 'admin') {
+            throw new NotLogged('User not allowed to update role');
+        }
+
+        const userRole = await usersService.getRole(userId);
+        console.log(`userRole: ${userRole}`);
+        if (userRole === 'Admin') {
+            throw new NotLogged('Cannot update role for another admin');
+        }
+
+        const user = await usersService.updateUserRole(userId, updaterId, role);
+        console.log(`user: ${user}`);
         if (!user) {
             throw createError(404, 'User not found');
         }
         res.json(user);
     } catch (error) {
-        next(new ServerError());
+        console.log(`Error: ${error.message}`);
+        next(new ServerError(error.message));
     }
-}
+};
 
 exports.increaseNbPosts = async (req, res, next) => {
     try {

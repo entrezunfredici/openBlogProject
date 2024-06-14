@@ -105,11 +105,15 @@ exports.createToken = async (user) => {
     });
 }
 
-exports.updateUserRôle = async (id, idUpdater, role) => {
-    if (await this.getRôle(idUpdater) !== 'admin') {
-        throw new NotLogged('user not allowed to update role')
+exports.updateUserRole = async (id, idUpdater, role) => {
+    try {
+        if (await this.getRole(idUpdater) !== 'admin') {
+            throw new NotLogged('user not allowed to update role');
+        }
+        return await users.update({ role }, { where: { id } });
+    } catch (e) {
+        throw new ServerError(e.message);
     }
-    return users.update({ role }, { where: { id } })
 }
 
 exports.deleteUserByID = async (id) => {
