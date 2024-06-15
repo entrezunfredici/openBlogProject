@@ -8,15 +8,17 @@ import { BlogService } from '../../services/blog.service';
   styleUrl: './posts.component.scss'
 })
 export class PostsComponent {
+  constructor(private blogService: BlogService) { }
   @Input() posts: Posts;
   ngOnInit(){
   }
+  likeClick() {
+    this.blogService.incrementNbLikes(this.posts.id).subscribe();
+  }
+  dislikeClick(){
+    this.blogService.incrementNbDislikes(this.posts.id).subscribe();
+  }
+  reportClick(){
+
+  }
 }
-
-// export class CommentsComponent {
-  
-// }
-
-// export class SubjectsComponent {
-  
-// }

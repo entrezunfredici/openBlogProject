@@ -49,17 +49,17 @@ export class BlogService {
   updatePost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/edit`, post);
   }
-  incrementNbComments(id: number, post: Posts): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbComments/id=${id}`, post);
+  incrementNbComments(id: number): Observable<Posts> {
+    return this.http.put<Posts>(`${this.postUrl}/incrementNbComments/id=${id}`, {});
   }
-  incrementNbLikes(id: number, post: Posts): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbLikes/id=${id}`, post);
+  incrementNbLikes(id: number): Observable<Posts> {
+    return this.http.put<Posts>(`${this.postUrl}/incrementNbLikes/id=${id}`, {});
   }
-  incrementNbDislikes(id: number, post: Posts): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbDislikes/id=${id}`, post);
+  incrementNbDislikes(id: number): Observable<Posts> {
+    return this.http.put<Posts>(`${this.postUrl}/incrementNbDislikes/id=${id}`, {});
   }
-  incrementNbReports(id: number, post: Posts): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbReports/id=${id}`, post);
+  incrementNbReports(id: number): Observable<Posts> {
+    return this.http.put<Posts>(`${this.postUrl}/incrementNbReports/id=${id}`, {post});
   }
   deletePost(id: number): Observable<void> {  // Méthode de suppression
     return this.http.delete<void>(`${this.postUrl}/delete/${id}`);

@@ -44,6 +44,18 @@ exports.getPostsByTitle = async (req, res, next) => {
     }
 }
 
+exports.getReactions = async (req, res, next) => {
+    try {
+        const postId = req.params.id;
+        const userId = req.params.userId;
+        const type = req.params.type;
+        const reaction = await postsService.getReactions(postId, userId, type);
+        res.json(reaction);
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
 exports.createPost = async (req, res, next) => {
     try {
         const { title, content, authorId } = req.body;
@@ -65,11 +77,33 @@ exports.editPost = async (req, res, next) => {
     }
 }
 
+exports.addReaction = async (req, res, next) => {
+    try {
+        const { postId, userId, type } = req.body;
+        (type == 'like' && await postsService.getReactions(postId, userId, 'dislike')) && await postsService.removeReaction(postId, userId, 'dislike');
+        (type == 'dislike' && await postsService.getReactions(postId, userId, 'like')) && await postsService.removeReaction(postId, userId, 'like');
+        await postsService.addReaction(postId, userId, type);
+        res.json({ message: 'Reaction added' });
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
 exports.deletePost = async (req, res, next) => {
     try {
         const postId = req.params.id;
         await postsService.deletePost(postId);
         res.json({ message: 'Post deleted' });
+    } catch (error) {
+        next(new ServerError());
+    }
+}
+
+exports.removeReaction = (req, res, next) => {
+    try {
+        const { postId, userId, type } = req.body;
+        //await postsService.removeReaction(postId, userId, type);
+        res.json({ message: 'Reaction removed' });
     } catch (error) {
         next(new ServerError());
     }

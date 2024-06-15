@@ -1,4 +1,4 @@
-const { users, posts, subjects, postSubject } = require('../models');
+const { users, posts, subjects, postSubject, reactions } = require('../models');
 const usersService = require('./users');
 const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
 
@@ -39,6 +39,14 @@ exports.getPostsByTitle = async (title) => {
     })
 }
 
+exports.getReactions = async (postId, userId, type) => {
+    return reactions.findOne({
+        postId: postId,
+        userId: userId,
+        type: type
+    })
+}
+
 exports.createPost = async (title, content, authorId) => {
     return await posts.create({ title, content, userId:authorId });
 }
@@ -57,6 +65,26 @@ exports.deletePost = async (postId) => {
 
 exports.incrementNbComments = async (postId) => {
     return posts.increment('nbComments', { where: { id: postId } });
+}
+
+exports.addReaction = async (postId, userId, type) => {
+    (type == 'like') && await this.incrementNbLikes(postId);
+    (type == 'dislike') && await this.incrementNbDislikes(postId);
+    (type == 'report') && await this.incrementNbReports(postId);
+    return reactions.create({postId, userId, type});
+}
+
+exports.removeReaction = async (postId, userId, type) => {
+    (type == 'like') && await this.decrementNbLikes(postId);
+    (type == 'dislike') && await this.decrementNbDislikes(postId);
+    (type == 'report') && await this.decrementNbReports(postId);
+    return reactions.destroy({
+        where: {
+            postId: postId,
+            userId: userId,
+            type: type
+        }
+    })
 }
 
 exports.incrementNbLikes = async (postId) => {
