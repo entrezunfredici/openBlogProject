@@ -132,14 +132,11 @@ exports.updateRole = async (req, res, next) => {
     try {
         const userId = req.params.id;
         const { role, updaterId } = req.body;
-        console.log(`userId: ${userId}, role: ${role}, updaterId: ${updaterId}`);
         updaterRole =""
 
         if(updaterId != -1){
             updaterRole = await usersService.getRole(updaterId);
         }
-        console.log(`updaterRole: ${updaterRole}`);
-        updaterRole
         if (updaterRole !== 'admin' && updaterRole !== 'Admin') {
             throw createError(404, 'User not allowed to update role');
         }
