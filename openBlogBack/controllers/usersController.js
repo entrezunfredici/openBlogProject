@@ -132,21 +132,13 @@ exports.updateRole = async (req, res, next) => {
     try {
         const userId = req.params.id;
         const { role, updaterId } = req.body;
-        updaterRole =""
-
-        if(updaterId != -1){
-            updaterRole = await usersService.getRole(updaterId);
-        }
+        updaterRole = await usersService.getRole(updaterId);
         if (updaterRole !== 'admin' && updaterRole !== 'Admin') {
             throw createError(404, 'User not allowed to update role');
         }
-
-        const user = await usersService.updateRole(userId, role);
-        console.log(`user: ${user}`);
-        if (!user) {
-            throw createError(404, 'User not found');
-        }
-        res.json(user);
+        const result = await usersService.updateRole(userId, role);
+        (result)&&(res.json(result));
+        throw createError(404, 'User not found');
     } catch (error) {
         console.log(`Error: ${error.message}`);
         next(new ServerError(error.message));

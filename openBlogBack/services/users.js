@@ -106,7 +106,6 @@ exports.createToken = async (user) => {
 }
 
 exports.updateRole = async (id, role) => {
-    console.log(`id: ${id}, role: ${role}`);
     try {
         return await users.update({ role }, { where: { id } });
     } catch (e) {
