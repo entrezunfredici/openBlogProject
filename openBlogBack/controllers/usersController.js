@@ -127,25 +127,24 @@ exports.updatePassword = async (req, res, next) => {
     }
 }
 
-exports.updateUserRole = async (req, res, next) => {
-    console.log("Entrée dans updateUserRole");
+exports.updateRole = async (req, res, next) => {
+    console.log("Entrée dans updateRole");
     try {
-        const { userId, role, updaterId } = req.body;
+        const userId = req.params.id;
+        const { role, updaterId } = req.body;
         console.log(`userId: ${userId}, role: ${role}, updaterId: ${updaterId}`);
+        updaterRole =""
 
-        const updaterRole = await usersService.getRole(updaterId);
+        if(updaterId != -1){
+            updaterRole = await usersService.getRole(updaterId);
+        }
         console.log(`updaterRole: ${updaterRole}`);
-        if (updaterRole !== 'admin') {
-            throw new NotLogged('User not allowed to update role');
+        updaterRole
+        if (updaterRole !== 'admin' && updaterRole !== 'Admin') {
+            throw createError(404, 'User not allowed to update role');
         }
 
-        const userRole = await usersService.getRole(userId);
-        console.log(`userRole: ${userRole}`);
-        if (userRole === 'Admin') {
-            throw new NotLogged('Cannot update role for another admin');
-        }
-
-        const user = await usersService.updateUserRole(userId, updaterId, role);
+        const user = await usersService.updateRole(userId, role);
         console.log(`user: ${user}`);
         if (!user) {
             throw createError(404, 'User not found');

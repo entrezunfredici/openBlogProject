@@ -18,7 +18,7 @@ router.post('/:id', usersController.updateUser);
 // route pour modifier le mot de passe
 router.post('/updatePassword/:id', usersController.updatePassword);
 // route pour modifier le rôle d'un utilisateur
-router.post('/changeUserRole', usersController.updateUserRole);
+router.post('/updateRole/:id', usersController.updateRole);
 
 // Routes pour augmenter/diminuer le nombre de posts et de followers
 router.put('/decreaceNbPosts/:id', usersController.decreaceNbPosts);
