@@ -53,11 +53,10 @@ exports.addUser = async (username, password, email) => {
     })
 }
 
-exports.updateUser = async (id, username, password, email, userPhoto, description) => {
+exports.updateUser = async (id, username, email, userPhoto, description) => {
     const user= await users.findOne({ where: { id } })
-    const verifiedUser = await bcrypt.compare(password, user.password);
-    if (!verifiedUser) {
-        throw new NotLogged('password incorrect for username');
+    if (!user) {
+        throw new NotLogged('user not found');
     }
     user.update({ username, email, userPhoto, description })
     return this.createToken(user);
