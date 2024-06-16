@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Posts } from '../../model/posts.model';
 import { BlogService } from '../../services/blog.service';
+import { UsersService } from './../../services/users.service';
 
 @Component({
   selector: 'app-posts',
@@ -8,17 +9,18 @@ import { BlogService } from '../../services/blog.service';
   styleUrl: './posts.component.scss'
 })
 export class PostsComponent {
-  constructor(private blogService: BlogService) { }
+  constructor(private blogService: BlogService, private usersService: UsersService) { }
+  userInfo: any = this.usersService.getUserInfo();
   @Input() posts: Posts;
   ngOnInit(){
   }
   likeClick() {
-    this.blogService.incrementNbLikes(this.posts.id).subscribe();
+    this.blogService.addReaction(this.posts.id, this.userInfo.id, "like");
   }
   dislikeClick(){
-    this.blogService.incrementNbDislikes(this.posts.id).subscribe();
+    this.blogService.addReaction(this.posts.id, this.userInfo.id, "dislike");
   }
   reportClick(){
-
+    this.blogService.addReaction(this.posts.id, this.userInfo.id, "report");
   }
 }

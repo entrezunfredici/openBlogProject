@@ -49,17 +49,11 @@ export class BlogService {
   updatePost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/edit`, post);
   }
+  addReaction(postId: number, userId: number, reaction: string): Observable<string> {
+    return this.http.put<string>(`${this.postUrl}/addReaction`, {postId, userId, reaction});
+  }
   incrementNbComments(id: number): Observable<Posts> {
     return this.http.put<Posts>(`${this.postUrl}/incrementNbComments/id=${id}`, {});
-  }
-  incrementNbLikes(id: number): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbLikes/id=${id}`, {});
-  }
-  incrementNbDislikes(id: number): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbDislikes/id=${id}`, {});
-  }
-  incrementNbReports(id: number): Observable<Posts> {
-    return this.http.put<Posts>(`${this.postUrl}/incrementNbReports/id=${id}`, {post});
   }
   deletePost(id: number): Observable<void> {  // Méthode de suppression
     return this.http.delete<void>(`${this.postUrl}/delete/${id}`);

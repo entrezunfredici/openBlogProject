@@ -1,4 +1,5 @@
 const postsService = require('../services/posts');
+const usersService = require('../services/users');
 const createError = require('http-errors');
 const { ServerError } = require('../errors');
 
@@ -80,8 +81,16 @@ exports.editPost = async (req, res, next) => {
 exports.addReaction = async (req, res, next) => {
     try {
         const { postId, userId, type } = req.body;
-        (type == 'like' && await postsService.getReactions(postId, userId, 'dislike')) && await postsService.removeReaction(postId, userId, 'dislike');
-        (type == 'dislike' && await postsService.getReactions(postId, userId, 'like')) && await postsService.removeReaction(postId, userId, 'like');
+        if(!await usersService.getUserById(userId)) {
+            throw createError(404, 'User not found');
+        }
+        (await postsService.getReactions(postId, userId, type)) && res.json({ message: "Reaction already exists" });
+        if (type === 'like' && await postsService.getReactions(postId, userId, 'dislike')) {
+            await postsService.removeReaction(postId, userId, 'dislike');
+        }
+        if (type === 'dislike' && await postsService.getReactions(postId, userId, 'like')) {
+            await postsService.removeReaction(postId, userId, 'like');
+        }
         await postsService.addReaction(postId, userId, type);
         res.json({ message: 'Reaction added' });
     } catch (error) {
@@ -114,36 +123,6 @@ exports.incrementNbComments = async (req, res, next) => {
         const postId = req.params.id;
         await postsService.incrementNbComments(postId);
         res.json({ message: 'NbComments incremented' });
-    } catch (error) {
-        next(new ServerError());
-    }
-}
-
-exports.incrementNbLikes = async (req, res, next) => {
-    try {
-        const postId = req.params.id;
-        await postsService.incrementNbLikes(postId);
-        res.json({ message: 'NbLikes incremented' });
-    } catch (error) {
-        next(new ServerError());
-    }
-}
-
-exports.incrementNbDislikes = async (req, res, next) => {
-    try {
-        const postId = req.params.id;
-        await postsService.incrementNbDislikes(postId);
-        res.json({ message: 'NbDislikes incremented' });
-    } catch (error) {
-        next(new ServerError());
-    }
-}
-
-exports.incrementNbReports = async (req, res, next) => {
-    try {
-        const postId = req.params.id;
-        await postsService.incrementNbReports(postId);
-        res.json({ message: 'NbReports incremented' });
     } catch (error) {
         next(new ServerError());
     }

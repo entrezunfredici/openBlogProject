@@ -40,11 +40,14 @@ exports.getPostsByTitle = async (title) => {
 }
 
 exports.getReactions = async (postId, userId, type) => {
+    console.log(`Fetching reactions for postId: ${postId}, userId: ${userId}, type: ${type}`);
     return reactions.findOne({
-        postId: postId,
-        userId: userId,
-        type: type
-    })
+        where: {
+            postId: postId,
+            userId: userId,
+            type: type
+        }
+    });
 }
 
 exports.createPost = async (title, content, authorId) => {
@@ -68,16 +71,16 @@ exports.incrementNbComments = async (postId) => {
 }
 
 exports.addReaction = async (postId, userId, type) => {
-    (type == 'like') && await this.incrementNbLikes(postId);
-    (type == 'dislike') && await this.incrementNbDislikes(postId);
-    (type == 'report') && await this.incrementNbReports(postId);
+    (type == 'like') && await posts.increment('nbLikes', { where: { id: postId } });
+    (type == 'dislike') && await posts.increment('nbDislikes', { where: { id: postId } });
+    (type == 'report') && await posts.increment('nbReports', { where: { id: postId } });
     return reactions.create({postId, userId, type});
 }
 
 exports.removeReaction = async (postId, userId, type) => {
-    (type == 'like') && await this.decrementNbLikes(postId);
-    (type == 'dislike') && await this.decrementNbDislikes(postId);
-    (type == 'report') && await this.decrementNbReports(postId);
+    (type == 'like') && await posts.decrement('nbLikes', { where: { id: postId } });
+    (type == 'dislike') && await posts.decrement('nbDislikes', { where: { id: postId } });
+    (type == 'report') && await posts.decrement('nbReports', { where: { id: postId } });
     return reactions.destroy({
         where: {
             postId: postId,
@@ -85,18 +88,6 @@ exports.removeReaction = async (postId, userId, type) => {
             type: type
         }
     })
-}
-
-exports.incrementNbLikes = async (postId) => {
-    return posts.increment('nbLikes', { where: { id: postId } });
-}
-
-exports.incrementNbDislikes = async (postId) => {
-    return posts.increment('nbDislikes', { where: { id: postId } });
-}
-
-exports.incrementNbReports = async (postId) => {
-    return posts.increment('nbReports', { where: { id: postId } });
 }
 
 exports.incrementNbViews = async (postId) => {
