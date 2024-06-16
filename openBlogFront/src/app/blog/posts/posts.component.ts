@@ -10,17 +10,27 @@ import { UsersService } from './../../services/users.service';
 })
 export class PostsComponent {
   constructor(private blogService: BlogService, private usersService: UsersService) { }
-  userInfo: any = this.usersService.getUserInfo();
+  userInfo: any = {}
   @Input() posts: Posts;
   ngOnInit(){
   }
   likeClick() {
-    this.blogService.addReaction(this.posts.id, this.userInfo.id, "like");
+    if(this.usersService.isLoggedIn()){
+      this.userInfo = this.usersService.getUserInfo();
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "like");
+    }
   }
   dislikeClick(){
-    this.blogService.addReaction(this.posts.id, this.userInfo.id, "dislike");
+    if(this.usersService.isLoggedIn()){
+      this.userInfo = this.usersService.getUserInfo();
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "dislike");
+    }
   }
   reportClick(){
-    this.blogService.addReaction(this.posts.id, this.userInfo.id, "report");
+    if(this.usersService.isLoggedIn()){
+      this.userInfo = this.usersService.getUserInfo();
+      console.log(this.userInfo)
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "report");
+    }
   }
 }

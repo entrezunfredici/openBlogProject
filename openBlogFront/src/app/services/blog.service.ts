@@ -40,7 +40,8 @@ export class BlogService {
     return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`)
   }
   createPost(title: string, content: string, authorId: number): Observable<PostsTemplate> {
-    return this.http.post<Posts>(`${this.postUrl}/create`, {
+    console.log(title, content, authorId)
+    return this.http.post<PostsTemplate>(`${this.postUrl}/create`, {
       "title": title, 
       "content": content, 
       "authorId": authorId
@@ -49,8 +50,14 @@ export class BlogService {
   updatePost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/edit`, post);
   }
-  addReaction(postId: number, userId: number, reaction: string): Observable<string> {
-    return this.http.put<string>(`${this.postUrl}/addReaction`, {postId, userId, reaction});
+  addReaction(postId: number, userId: number, type: string): Observable<string> {
+    console.log("reaction")
+    console.log(postId, userId, type)
+    return this.http.put<string>(`${this.postUrl}/addReaction`, {
+      "postId": postId, 
+      "userId": userId, 
+      "type": type
+    });
   }
   incrementNbComments(id: number): Observable<Posts> {
     return this.http.put<Posts>(`${this.postUrl}/incrementNbComments/id=${id}`, {});
