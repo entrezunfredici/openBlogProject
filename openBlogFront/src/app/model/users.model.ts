@@ -38,3 +38,7 @@ export interface updaterBody{
     email: string;
     description: string;
 }
+
+export interface updateResponse{
+    "message": string
+}

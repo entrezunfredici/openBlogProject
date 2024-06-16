@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent } from './posts-list/post-list.component';
 import { PostsWriterComponent } from './posts-writer/posts-writer.component';
+import { AuthGuard } from '../users/auth.guard';
 
 const routes: Routes = [
     {
@@ -10,13 +11,15 @@ const routes: Routes = [
     },
     {
         path: 'new',
-        component: PostsWriterComponent
+        component: PostsWriterComponent,
+        canActivate: [AuthGuard]
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AuthGuard]
 })
 
 export class BlogRoutingModule { }

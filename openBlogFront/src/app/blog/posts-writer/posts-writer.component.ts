@@ -30,6 +30,14 @@ export class PostsWriterComponent {
         console.error('error creating post:', error);
       }
     });
+    this.usersService.increaseNbPosts(this.userInfo.data.id).subscribe({
+      next: (user) => {
+        //console.log(result);
+      },
+      error: (error) => {
+        console.error('error increasing nbPosts:', error);
+      }
+    });
   }
 
   navigateToMain() {

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdministrationService {
 
-  url ='http://localhost:8000/'
+  url ='http://openblog.blog:8000/'
   
   constructor() { }
 }

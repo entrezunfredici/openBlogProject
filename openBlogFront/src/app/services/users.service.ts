@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users, loginResponse, updaterBody, usersResponse, UsersWithoutPassword} from '../model/users.model';
+import { Users, loginResponse, updaterBody, usersResponse, updateResponse, UsersWithoutPassword} from '../model/users.model';
 import * as jwt_decode from 'jwt-decode';
 
 
@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class UsersService {
   private tokenKey = 'authToken';
-  url ='http://localhost:8000/users'
+  url ='http://openblog.blog:8000/users'
   thisLoginResponse: loginResponse;
 
   constructor(private http: HttpClient) { }
@@ -42,11 +42,11 @@ export class UsersService {
   updateUser(id: number, update: updaterBody): Observable<string> {
     return this.http.post<string>(`${this.url}/${id}`, update);
   }
-  increaceNbPosts(id: number, user: Users): Observable<Users> {
-    return this.http.put<Users>(`${this.url}/increaceNbComments/id=${id}`, user);
+  increaseNbPosts(id: number): Observable<Users> {
+    return this.http.put<Users>(`${this.url}/increaseNbPosts/id=${id}`,{});
   }
-  decreaseNbPosts(id: number, user: Users): Observable<Users> {
-    return this.http.put<Users>(`${this.url}/decreaceNbPosts/id=${id}`, user);
+  decreaseNbPosts(id: number): Observable<Users> {
+    return this.http.put<Users>(`${this.url}/decreaceNbPosts/id=${id}`,{});
   }
   // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
