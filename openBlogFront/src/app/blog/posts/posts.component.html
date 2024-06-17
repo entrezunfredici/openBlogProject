@@ -1,35 +1,38 @@
-<!-- <div *ngFor="let post of posts"> -->
-    <section id="" class="posts">
-        <div class="creatorProfile">
-            <img id="avatarPhoto" class="avatarPhoto" src="{{posts.user.userPhoto}}" alt="Avatar">
-            <p id="creatorName" class="creatorName">{{posts.user.username || "user name loading errorr"}}</p>
+<section id="" class="posts">
+    <div class="creatorProfile">
+        <img id="avatarPhoto" class="avatarPhoto" src="{{posts.user.userPhoto}}" alt="Avatar">
+        <p id="creatorName" class="creatorName">{{posts.user.username || "user name loading errorr"}}</p>
+    </div>
+    <div class="container">
+        <div class="info">
+            <p>❤️{{posts.nbLikes}}</p>
+            <p>💔{{posts.nbDislikes}}</p>
+            <p>❌{{posts.nbReports}}</p>
         </div>
-        <div class="container">
-            <div id="title" class="title">
-                <p>{{posts.title}}</p>
+        <div id="title" class="title">
+            <p>{{posts.title}}</p>
+        </div>
+        
+        <div id="content" class="content">
+            {{posts.content || "content loading error"}}
+        </div>
+        <div class="subjects_container">
+            <div class="horizontalSeparator"></div>
+            <div id="subjects" class="subjects">
+                <div class="rotatedSeparator"></div>
+                <p class="subject-text">subjects:</p>
+                <app-subjects-list *ngIf="posts.id"[number]="posts.id"></app-subjects-list>
             </div>
-            <div id="content" class="content">
-                {{posts.content || "content loading error"}}
-            </div>
-            <div class="subjects_container">
-                <div class="horizontalSeparator"></div>
-                <div id="subjects" class="subjects">
-                    <div class="rotatedSeparator"></div>
-                    <p class="subject-text">subjects:</p>
-                    <app-subjects-list *ngIf="posts.id"[number]="posts.id"></app-subjects-list>
-                </div>
-                <div class="littleHorizontalSeparator"></div>
-            </div>
+            <div class="littleHorizontalSeparator"></div>
         </div>
-        <div id="menu" class="menu">
-            <button id="commentsButton" class="commentsButton">Comments</button>
-            <button id="reportButton" class="reactButton, reportButton" (click)="reportClick()">❌</button>
-            <button id="dislikeButton" class="reactButton" (click)="dislikeClick()">💔</button>
-            <button id="likeButton" class="reactButton" (click)="likeClick()">❤️</button>
-        </div>
-        <div id="comments" class="comments invisible">
-            <app-comments-list></app-comments-list>
-        </div>
-    </section>
-<!-- </div> -->
-
+    </div>
+    <div id="menu" class="menu">
+        <button id="commentsButton" class="commentsButton">Comments</button>
+        <button id="reportButton" class="reactButton, reportButton" (click)="reportClick()">❌</button>
+        <button id="dislikeButton" class="reactButton" (click)="dislikeClick()">💔</button>
+        <button id="likeButton" class="reactButton" (click)="likeClick()">❤️</button>
+    </div>
+    <div id="comments" class="comments invisible">
+        <app-comments-list></app-comments-list>
+    </div>
+</section>

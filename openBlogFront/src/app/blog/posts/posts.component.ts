@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Posts } from '../../model/posts.model';
+import { Component, Input, ChangeDetectorRef  } from '@angular/core';
+import { Posts, Reactions } from '../../model/posts.model';
 import { BlogService } from '../../services/blog.service';
 import { UsersService } from './../../services/users.service';
 
@@ -9,49 +9,108 @@ import { UsersService } from './../../services/users.service';
   styleUrl: './posts.component.scss'
 })
 export class PostsComponent {
-  constructor(private blogService: BlogService, private usersService: UsersService) { }
+  constructor(
+    private blogService: BlogService, 
+    private usersService: UsersService,
+    private cdr: ChangeDetectorRef
+  ) { }
   userInfo: any = {}
   @Input() posts: Posts;
+  reportReaction: Reactions;
+  reaction: Reactions;
+  reactionsName: string[] = ['like', 'dislike'];
+  reactionName: string;
   ngOnInit(){
-  }
-  likeClick() {
     if(this.usersService.isLoggedIn()){
       this.userInfo = this.usersService.getUserInfo();
-      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "like").subscribe({
-        next: (result) => {
-          console.log(result);
+      this.blogService.getReactions(this.posts.id, this.userInfo.data.id, "report").subscribe({
+        next: (reaction) => {
+          this.reportReaction = reaction;
         },
         error: (error) => {
-          console.error('error adding like:', error);
+          console.error('Error fetching reactions:', error);
         }
       });
+      for (let i in this.reactionsName){
+        this.getLocalReaction(this.reactionsName[i]);
+      }
+    }
+  }
+  likeClick() {
+    if(this.userInfo){
+      if(this.reaction && this.reaction.type == "like"){
+        this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, "like");
+      }else{
+        this.addReaction("like");
+        setTimeout(() => {
+          this.getLocalReaction("like");
+        }, 50);
+      }
+    }else{
+      alert('You must be logged in to like a post');
     }
   }
   dislikeClick(){
-    if(this.usersService.isLoggedIn()){
-      this.userInfo = this.usersService.getUserInfo();
-      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "dislike").subscribe({
-        next: (result) => {
-          
-        },
-        error: (error) => {
-          console.error('error adding like:', error);
-        }
-      });
+    if(this.userInfo){
+      if(this.reaction && this.reaction.type == "dislike"){
+        this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, "dislike")
+      }else{
+        this.addReaction("dislike");
+        setTimeout(() => {
+          this.getLocalReaction("dislike");
+        }, 50);
+      }
+    }else{
+      alert('You must be logged in to like a post');
     }
   }
   reportClick(){
-    if(this.usersService.isLoggedIn()){
-      this.userInfo = this.usersService.getUserInfo();
-      console.log(this.userInfo)
+    if(this.userInfo){
       this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "report").subscribe({
         next: (result) => {
-          
+          this.refreshPostData();
         },
         error: (error) => {
           console.error('error adding like:', error);
         }
       });
+    }else{
+      alert('You must be logged in to report a post');
     }
   }
+  refreshPostData() {
+    this.blogService.getPostById(this.posts.id).subscribe({
+      next: (updatedPost: Posts) => {
+        this.posts = updatedPost;
+      },
+      error: (error) => {
+        console.error('Error fetching post data:', error);
+      }
+    });
+  }
+  addReaction(type: string){
+    if(this.userInfo){
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, type).subscribe({
+        next: (result) => {
+          this.refreshPostData();
+        },
+        error: (error) => {
+          console.error('error adding like:', error);
+        }
+      });
+    }else{
+      alert('You must be logged in to like a post');
+    }
+  }
+  getLocalReaction(type: string){
+    this.blogService.getReactions(this.posts.id, this.userInfo.data.id, type).subscribe({
+      next: (reaction) => {
+        this.reaction=reaction;
+      },
+      error: (error) => {
+        console.error('Error fetching reactions:', error);
+      }
+    });
+  }
 }
+

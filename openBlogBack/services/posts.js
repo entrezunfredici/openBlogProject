@@ -41,7 +41,6 @@ exports.getPostsByTitle = async (title) => {
 }
 
 exports.getReactions = async (postId, userId, type) => {
-    console.log(`Fetching reactions for postId: ${postId}, userId: ${userId}, type: ${type}`);
     return reactions.findOne({
         where: {
             postId: postId,
@@ -55,8 +54,28 @@ exports.createPost = async (title, content, authorId) => {
     return await posts.create({ title, content, userId:authorId });
 }
 
+exports.addReaction = async (postId, userId, type) => {
+    console.log("test");
+    (type == 'like') && await posts.increment('nbLikes', { where: { id: postId } });
+    (type == 'dislike') && await posts.increment('nbDislikes', { where: { id: postId } });
+    (type == 'report') && await posts.increment('nbReports', { where: { id: postId } });
+    return reactions.create({postId, userId, type});
+}
+
+exports.addSubject = async (postId, subjectId) => {
+    return postSubject.create({postId: postId, subjectId: subjectId});
+}
+
 exports.updatePost = async (postId, title, content) => {
     return await posts.update({ title, content }, { where: { id: postId } });
+}
+
+exports.incrementNbComments = async (postId) => {
+    return posts.increment('nbComments', { where: { id: postId } });
+}
+
+exports.incrementNbViews = async (postId) => {
+    return posts.increment('nbViews', { where: { id: postId } });
 }
 
 exports.deletePost = async (postId) => {
@@ -65,17 +84,6 @@ exports.deletePost = async (postId) => {
             id: postId
         }
     })
-}
-
-exports.incrementNbComments = async (postId) => {
-    return posts.increment('nbComments', { where: { id: postId } });
-}
-
-exports.addReaction = async (postId, userId, type) => {
-    (type == 'like') && await posts.increment('nbLikes', { where: { id: postId } });
-    (type == 'dislike') && await posts.increment('nbDislikes', { where: { id: postId } });
-    (type == 'report') && await posts.increment('nbReports', { where: { id: postId } });
-    return reactions.create({postId, userId, type});
 }
 
 exports.removeReaction = async (postId, userId, type) => {
@@ -89,12 +97,4 @@ exports.removeReaction = async (postId, userId, type) => {
             type: type
         }
     })
-}
-
-exports.incrementNbViews = async (postId) => {
-    return posts.increment('nbViews', { where: { id: postId } });
-}
-
-exports.addSubject = async (postId, subjectId) => {
-    return postSubject.create({postId: postId, subjectId: subjectId});
 }

@@ -18,3 +18,10 @@ export interface PostsTemplate {
     content: string;
     authorId: number;
 }
+
+export interface Reactions {
+    id: number;
+    postId: number;
+    userId: number;
+    type: string;
+}

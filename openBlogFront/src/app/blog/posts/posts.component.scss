@@ -149,3 +149,17 @@
     background-color: rgba(0, 0, 0, 0);
     margin-left: calc(95% - 200px);
 }
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-top: -60px;
+    margin-left: calc(95% - 100px);
+    font-size: 15px;
+    color: $white;
+}
+
+.info p {
+    margin-left: 10px;
+}
+

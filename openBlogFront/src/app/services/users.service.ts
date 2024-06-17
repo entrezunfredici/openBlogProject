@@ -48,7 +48,6 @@ export class UsersService {
   decreaseNbPosts(id: number): Observable<Users> {
     return this.http.put<Users>(`${this.url}/decreaceNbPosts/id=${id}`,{});
   }
-  // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
     const token = localStorage.getItem('token');
     if (token) {
@@ -56,8 +55,6 @@ export class UsersService {
     }
     return null;
   }
-
-  // Méthode pour supprimer le token (déconnexion)
   clearToken(): void {
     localStorage.removeItem('token');
   }

@@ -8,7 +8,7 @@ module.exports = (instance) => {
             autoIncrement: true
         },
         postId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER, 
             allowNull: false,
             references: {
                 model: 'posts', // nom du modèle référencé
