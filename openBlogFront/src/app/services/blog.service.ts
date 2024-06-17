@@ -74,9 +74,9 @@ export class BlogService {
     return this.http.delete<void>(`${this.postUrl}/delete/${id}`);
   }
 
-  deleteReaction(postId: number, userId: number, type: string): Observable<void> {
+  deleteReaction(postId: number, userId: number, type: string): Observable<string> {
     console.log('Deleting reaction with:', { postId, userId, type });
-    return this.http.delete<void>(`${this.postUrl}/deleteReaction/post=${postId}&user=${userId}&type=${type}`);
+    return this.http.delete<string>(`${this.postUrl}/deleteReaction/post=${postId}&user=${userId}&type=${type}`);
   }
 }
 

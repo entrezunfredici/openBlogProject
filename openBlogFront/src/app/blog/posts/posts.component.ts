@@ -20,6 +20,7 @@ export class PostsComponent {
   reaction: Reactions;
   reactionsName: string[] = ['like', 'dislike'];
   reactionName: string;
+  
   ngOnInit(){
     if(this.usersService.isLoggedIn()){
       this.userInfo = this.usersService.getUserInfo();
@@ -36,10 +37,11 @@ export class PostsComponent {
       }
     }
   }
+
   likeClick() {
     if(this.userInfo){
       if(this.reaction && this.reaction.type == "like"){
-        this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, "like");
+        this.deleteReaction("like")
       }else{
         this.addReaction("like");
         setTimeout(() => {
@@ -50,10 +52,11 @@ export class PostsComponent {
       alert('You must be logged in to like a post');
     }
   }
+
   dislikeClick(){
     if(this.userInfo){
       if(this.reaction && this.reaction.type == "dislike"){
-        this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, "dislike")
+        this.deleteReaction("dislike")
       }else{
         this.addReaction("dislike");
         setTimeout(() => {
@@ -64,6 +67,7 @@ export class PostsComponent {
       alert('You must be logged in to like a post');
     }
   }
+
   reportClick(){
     if(this.userInfo){
       this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "report").subscribe({
@@ -78,6 +82,18 @@ export class PostsComponent {
       alert('You must be logged in to report a post');
     }
   }
+  
+  getLocalReaction(type: string){
+    this.blogService.getReactions(this.posts.id, this.userInfo.data.id, type).subscribe({
+      next: (reaction) => {
+        this.reaction=reaction;
+      },
+      error: (error) => {
+        console.error('Error fetching reactions:', error);
+      }
+    });
+  }
+
   refreshPostData() {
     this.blogService.getPostById(this.posts.id).subscribe({
       next: (updatedPost: Posts) => {
@@ -88,6 +104,7 @@ export class PostsComponent {
       }
     });
   }
+
   addReaction(type: string){
     if(this.userInfo){
       this.blogService.addReaction(this.posts.id, this.userInfo.data.id, type).subscribe({
@@ -102,15 +119,21 @@ export class PostsComponent {
       alert('You must be logged in to like a post');
     }
   }
-  getLocalReaction(type: string){
-    this.blogService.getReactions(this.posts.id, this.userInfo.data.id, type).subscribe({
-      next: (reaction) => {
-        this.reaction=reaction;
+
+  
+  
+  
+  deleteReaction(type: string){
+    this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, type).subscribe({
+      next: (result) => {
+        this.refreshPostData();
       },
       error: (error) => {
-        console.error('Error fetching reactions:', error);
+        console.error('error deleting like:', error);
       }
     });
+    this.reaction=null;
   }
+  
 }
 
