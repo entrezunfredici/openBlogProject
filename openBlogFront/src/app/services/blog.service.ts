@@ -11,9 +11,8 @@ import { postsSubject } from '../model/postsSubjects.model';
 })
 export class BlogService {
   private jsonUrl = 'apiurl.json';
-  private postUrl = 'http://localhost:8000/Posts';
-  private subjectsUrl = 'http://localhost:8000/subjects'
-  //private postUrl = this.getUrl()+'/Posts';
+  private postUrl = 'http://localhost:8000/posts';
+  private subjectsUrl = 'http://localhost:8000/subjects';
   
   constructor(private http: HttpClient) { }
   
@@ -22,47 +21,53 @@ export class BlogService {
       map(data => data.url)
     );
   }
+
   getPosts(): Observable<Posts[]> {
-    return this.http.get<Posts[]>(
-      `${this.postUrl}/all`
-    ); 
+    return this.http.get<Posts[]>(`${this.postUrl}/all`);
   }
-  getPostById(id: number): Observable<Posts> {  // Correction du type de retour
-    return this.http.get<Posts>(`${this.postUrl}/id:${id}`);  // Correction de l'URL
+
+  getPostById(id: number): Observable<Posts> {
+    return this.http.get<Posts>(`${this.postUrl}/id:${id}`);
   }
-  getPostByAuthorId(authorId: number): Observable<Posts> {  // Correction du type de retour
-    return this.http.get<Posts>(`${this.postUrl}/authorId:${authorId}`);  // Correction de l'URL
+
+  getPostByAuthorId(authorId: number): Observable<Posts> {
+    return this.http.get<Posts>(`${this.postUrl}/authorId:${authorId}`);
   }
-  getPostByTitle(title: string): Observable<Posts> {  // Correction du type de retour
-    return this.http.get<Posts>(`${this.postUrl}/title:${title}`);  // Correction de l'URL
+
+  getPostByTitle(title: string): Observable<Posts> {
+    return this.http.get<Posts>(`${this.postUrl}/title:${title}`);
   }
+
   getSubjects(id: number): Observable<postsSubject[]> {
-    return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`)
+    return this.http.get<postsSubject[]>(`${this.subjectsUrl}/post=${id}`);
   }
+
   createPost(title: string, content: string, authorId: number): Observable<PostsTemplate> {
-    console.log(title, content, authorId)
     return this.http.post<PostsTemplate>(`${this.postUrl}/create`, {
-      "title": title, 
-      "content": content, 
+      "title": title,
+      "content": content,
       "authorId": authorId
     });
   }
+
   updatePost(post: Posts): Observable<Posts> {
     return this.http.post<Posts>(`${this.postUrl}/edit`, post);
   }
+
   addReaction(postId: number, userId: number, type: string): Observable<string> {
-    console.log("reaction")
-    console.log(postId, userId, type)
-    return this.http.put<string>(`${this.postUrl}/addReaction`, {
-      "postId": postId, 
-      "userId": userId, 
+    console.log('Adding reaction with:', { postId, userId, type });
+    return this.http.post<string>(`${this.postUrl}/addReaction`, {
+      "postId": postId,
+      "userId": userId,
       "type": type
     });
   }
+
   incrementNbComments(id: number): Observable<Posts> {
     return this.http.put<Posts>(`${this.postUrl}/incrementNbComments/id=${id}`, {});
   }
-  deletePost(id: number): Observable<void> {  // Méthode de suppression
+
+  deletePost(id: number): Observable<void> {
     return this.http.delete<void>(`${this.postUrl}/delete/${id}`);
   }
 }

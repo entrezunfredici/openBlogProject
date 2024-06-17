@@ -5,7 +5,8 @@ const { NotFound, NotLogged, BadRequest, ServerError } = require('../errors')
 exports.getPosts = async () => {
     return await posts.findAll({
         include: [users],
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password'] },
+        order: [['id', 'DESC']]
     })
 }
 
