@@ -17,20 +17,41 @@ export class PostsComponent {
   likeClick() {
     if(this.usersService.isLoggedIn()){
       this.userInfo = this.usersService.getUserInfo();
-      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "like");
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "like").subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+        error: (error) => {
+          console.error('error adding like:', error);
+        }
+      });
     }
   }
   dislikeClick(){
     if(this.usersService.isLoggedIn()){
       this.userInfo = this.usersService.getUserInfo();
-      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "dislike");
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "dislike").subscribe({
+        next: (result) => {
+          
+        },
+        error: (error) => {
+          console.error('error adding like:', error);
+        }
+      });
     }
   }
   reportClick(){
     if(this.usersService.isLoggedIn()){
       this.userInfo = this.usersService.getUserInfo();
       console.log(this.userInfo)
-      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "report");
+      this.blogService.addReaction(this.posts.id, this.userInfo.data.id, "report").subscribe({
+        next: (result) => {
+          
+        },
+        error: (error) => {
+          console.error('error adding like:', error);
+        }
+      });
     }
   }
 }
