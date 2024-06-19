@@ -11,6 +11,7 @@ const posts = require('./posts')(instance);
 const comments = require('./comments')(instance);
 const subjects = require('./subjects')(instance);
 const postSubject = require('./postSubject')(instance);
+const reactions = require('./reactions')(instance);
 
 // Définir les associations
 users.hasMany(posts, { foreignKey: 'userId' });
@@ -21,8 +22,11 @@ postSubject.belongsTo(posts, { foreignKey: 'postId' });
 subjects.hasMany(postSubject, { foreignKey: 'subjectId' });
 postSubject.belongsTo(subjects, { foreignKey: 'subjectId' });
 
-// Si vous avez d'autres relations, définissez-les ici.
-// Par exemple, si les commentaires sont liés aux utilisateurs et aux posts :
+posts.hasMany(reactions, { foreignKey: 'postId' });
+reactions.belongsTo(posts, { foreignKey: 'postId' });
+users.hasMany(reactions, { foreignKey: 'userId' });
+reactions.belongsTo(users, { foreignKey: 'userId' });
+
 users.hasMany(comments, { foreignKey: 'userId' });
 posts.hasMany(comments, { foreignKey: 'postId' });
 comments.belongsTo(users, { foreignKey: 'userId' });
@@ -35,6 +39,5 @@ module.exports = {
     comments,
     subjects,
     postSubject,
-    // reactions: require('./reactions')(instance),
-    // tags: require('./tags')(instance),
+    reactions,
 };
