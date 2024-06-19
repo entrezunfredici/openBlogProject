@@ -21,8 +21,11 @@ export class UsersService {
     return this.http.get<Users>(`${this.url}/username/${username}`);
   }
   isLoggedIn(): boolean {
-    if (localStorage.getItem('token')) {
-      return true;
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('token')) {
+        return true;
+      }
+      return !!localStorage.getItem(this.tokenKey);
     }
     return false;
   }

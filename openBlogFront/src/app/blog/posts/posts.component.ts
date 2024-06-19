@@ -120,9 +120,6 @@ export class PostsComponent {
     }
   }
 
-  
-  
-  
   deleteReaction(type: string){
     this.blogService.deleteReaction(this.posts.id, this.userInfo.data.id, type).subscribe({
       next: (result) => {
@@ -134,6 +131,5 @@ export class PostsComponent {
     });
     this.reaction=null;
   }
-  
 }
 
