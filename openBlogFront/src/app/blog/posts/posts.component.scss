@@ -131,46 +131,35 @@
     margin-left: 10px;
     margin-right: 10px;
     padding: 5px;
-    background-color: #303030;
-    border: 1px solid #dbe4eb;
+    background-color: $charcoalGray;
+    border: 1px solid $defaultBorderColor;
     border-radius: 5px;
     color: #FFFFFF;
+}
+
+.reactButton{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    padding-top:-5px;
 }
 
 .reportButton{
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    background-color: #00000066;
-    border-radius: 5px;
-    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: calc(95% - 200px);
 }
 
-.reportButton{
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    background-color: #00000066;
-    border-radius: 5px;
-    color: #FFFFFF;
-    margin-left: calc(95% - 150px);
+.info {
+    display: flex;
+    align-items: center;
+    margin-top: -60px;
+    margin-left: calc(95% - 100px);
+    font-size: 15px;
+    color: $white;
 }
 
-.dislikeButton{
+.info p {
     margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    background-color: #00000066;
-    border-radius: 5px;
-    color: #FFFFFF;
-}
-
-.likeButton{
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    background-color: #00000066;
-    border-radius: 5px;
-    color: #FFFFFF;
 }
 

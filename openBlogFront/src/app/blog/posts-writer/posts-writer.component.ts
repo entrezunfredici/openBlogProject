@@ -32,7 +32,7 @@ export class PostsWriterComponent {
     });
     this.usersService.increaseNbPosts(this.userInfo.data.id).subscribe({
       next: (user) => {
-        //console.log(result);
+        
       },
       error: (error) => {
         console.error('error increasing nbPosts:', error);
