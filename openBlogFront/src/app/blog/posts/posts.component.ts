@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectorRef  } from '@angular/core';
+import { Router } from '@angular/router';
 import { Posts, Reactions } from '../../model/posts.model';
 import { BlogService } from '../../services/blog.service';
 import { UsersService } from './../../services/users.service';
@@ -10,6 +11,7 @@ import { UsersService } from './../../services/users.service';
 })
 export class PostsComponent {
   constructor(
+    private router: Router,
     private blogService: BlogService, 
     private usersService: UsersService,
     private cdr: ChangeDetectorRef
@@ -118,6 +120,18 @@ export class PostsComponent {
     }else{
       alert('You must be logged in to like a post');
     }
+  }
+
+  profileClick(){
+    this.usersService.getUserById(this.posts.user.id).subscribe({
+      next: (profile) => {
+        console.log('Profile:', profile)
+        this.router.navigate(['/users/thisUser/{{profile.id}}']);
+      },
+      error: (error) => {
+        console.error('Error fetching profile:', error);
+      }
+    });
   }
 
   deleteReaction(type: string){

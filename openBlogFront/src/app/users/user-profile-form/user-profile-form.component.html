@@ -19,9 +19,8 @@
     <div class="configUserRect" id="userDescritpionForm" >
         <p class="userDescritpionInput">
             <label for="description">Description</label>
-            <textarea type="text" id="description" [(ngModel)]="description" name="description"></textarea>
+            <textarea type="text" id="description" [(ngModel)]="description" name="description" placeholder="{{defaultDescription}}"></textarea>
         </p>
-        
     </div>
     <div class="buttonsZone" id="userDescritpionForm" >
         <button type="button" class="cancel_button">cancel</button>
