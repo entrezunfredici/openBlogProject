@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministrationComponent } from './administration.component';
-import { ReportsListComponent } from './reports-list/reports-list.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { ReportsComponent } from './reports/reports.component';
-import { UsersComponent } from './users/users.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
 
+import { AdministrationRoutingModule } from './administration-routing.module';
+import { AdministrationComponent } from './administration.component';
+
+import { ReportsListComponent } from '../administration/reports-list/reports-list.component';
+import { UsersListComponent } from '../administration/users-list/users-list.component';
+import { ReportsComponent } from '../administration/reports/reports.component';
+import { UsersComponent } from '../administration/users/users.component';
+import { FormsModule } from '@angular/forms';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 
 @NgModule({
@@ -18,7 +21,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     UsersComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdministrationRoutingModule,
+    FormsModule
   ]
 })
 export class AdministrationModule { }
