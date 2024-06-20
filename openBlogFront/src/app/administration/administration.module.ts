@@ -15,8 +15,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     ReportsListComponent,
     UsersListComponent,
     ReportsComponent,
-    UsersComponent,
-    SidebarComponent
+    UsersComponent
   ],
   imports: [
     CommonModule

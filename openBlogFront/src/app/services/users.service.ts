@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class UsersService {
   private tokenKey = 'authToken';
-  url ='http://localhost:8000/users'
+  url ='http://openblog.blog:8000/users'
   thisLoginResponse: loginResponse;
 
   constructor(private http: HttpClient) { }
@@ -21,8 +21,11 @@ export class UsersService {
     return this.http.get<Users>(`${this.url}/username/${username}`);
   }
   isLoggedIn(): boolean {
-    if (localStorage.getItem('token')) {
-      return true;
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('token')) {
+        return true;
+      }
+      return !!localStorage.getItem(this.tokenKey);
     }
     return false;
   }
@@ -48,7 +51,6 @@ export class UsersService {
   decreaseNbPosts(id: number): Observable<Users> {
     return this.http.put<Users>(`${this.url}/decreaceNbPosts/id=${id}`,{});
   }
-  // Méthode pour obtenir les informations de l'utilisateur depuis le token
   getUserInfo(): any {
     const token = localStorage.getItem('token');
     if (token) {
@@ -56,8 +58,6 @@ export class UsersService {
     }
     return null;
   }
-
-  // Méthode pour supprimer le token (déconnexion)
   clearToken(): void {
     localStorage.removeItem('token');
   }

@@ -5,10 +5,12 @@ import { withFetch } from '@angular/common/http';  // Import de withFetch
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.service';  // Import de AuthInterceptor
+//import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent//,
+    //SidebarComponent
   ],
   imports: [
     BrowserModule,

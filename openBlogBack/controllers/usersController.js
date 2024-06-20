@@ -102,8 +102,8 @@ exports.getRole = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
     try {
         const userId = req.params.id;
-        const {username, password, email, userPhoto, description} = req.body;
-        const token = await usersService.updateUser(userId, username, password, email, userPhoto, description);
+        const {username, email, userPhoto, description} = req.body;
+        const token = await usersService.updateUser(userId, username, email, userPhoto, description);
         if (!token) {
             throw createError(404, 'User not found');
         }
