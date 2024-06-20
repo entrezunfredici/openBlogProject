@@ -1,6 +1,6 @@
 <section id="" class="posts">
-    <div class="creatorProfile">
-        <img id="avatarPhoto" class="avatarPhoto" src="{{posts.user.userPhoto}}" alt="Avatar">
+    <div class="creatorProfile" >
+        <img id="avatarPhoto" class="avatarPhoto" src="{{posts.user.userPhoto}}" alt="Avatar" (click)="profileClick()">
         <p id="creatorName" class="creatorName">{{posts.user.username || "user name loading errorr"}}</p>
     </div>
     <div class="container">
