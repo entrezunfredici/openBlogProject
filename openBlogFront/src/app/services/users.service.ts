@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class UsersService {
   private tokenKey = 'authToken';
-  url ='http://openblog.blog:8000/users'
+  url ='http://localhost:8000/users'
   thisLoginResponse: loginResponse;
 
   constructor(private http: HttpClient) { }
