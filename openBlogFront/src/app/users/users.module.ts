@@ -8,8 +8,10 @@ import { ChangePasswordFormComponent } from './change-password-form/change-passw
 import { UserProfileFormComponent } from './user-profile-form/user-profile-form.component';
 import { UserProfileViewComponent } from './user-profile-view/user-profile-view.component';
 import { UsersComponent } from './users.component';
+import { BlogModule } from '../blog/blog.module';
 
 import { UsersRoutingModule } from './users-routing.module';
+import { UsersPostsListComponent } from './users-posts-list/users-posts-list.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { UsersRoutingModule } from './users-routing.module';
     ChangePasswordFormComponent,
     UserProfileFormComponent,
     UserProfileViewComponent,
-    UsersComponent
+    UsersComponent,
+    UsersPostsListComponent,
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    FormsModule
+    FormsModule,
+    BlogModule
   ]
 })
 export class UsersModule { }

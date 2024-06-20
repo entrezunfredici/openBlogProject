@@ -37,7 +37,8 @@ import { SubjectsDetailComponent } from './subjects-detail/subjects-detail.compo
   ],
   exports: [
     PostsWriterComponent,
-    PostListComponent
+    PostListComponent,
+    PostsComponent
   ]
 })
 export class BlogModule { }

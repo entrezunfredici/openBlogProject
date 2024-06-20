@@ -30,8 +30,8 @@ export class BlogService {
     return this.http.get<Posts>(`${this.postUrl}/id=${id}`);
   }
 
-  getPostByAuthorId(authorId: number): Observable<Posts> {
-    return this.http.get<Posts>(`${this.postUrl}/authorId=${authorId}`);
+  getPostByAuthorId(authorId: number): Observable<Posts[]> {
+    return this.http.get<Posts[]>(`${this.postUrl}/authorId=${authorId}`);
   }
 
   getPostByTitle(title: string): Observable<Posts> {

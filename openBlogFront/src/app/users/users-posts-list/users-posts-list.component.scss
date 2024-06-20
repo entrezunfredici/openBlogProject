@@ -1,0 +1,11 @@
+@import '../../../colors.scss';
+
+.usersPostsList{
+    width:100%;
+    height:100%;
+    color:$white;
+}
+
+.usersPostsList {
+    overflow-x: hidden;
+}
