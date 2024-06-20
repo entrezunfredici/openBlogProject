@@ -27,7 +27,6 @@ export class UserProfileFormComponent {
   onChangeUser() {
     this.update = {
       username: this.username || this.defaultUsername,
-      password: this.password,
       email: this.Email || this.defaultEmail,
       description: this.description || this.defaultDescription,
       userPhoto: this.userPhoto || this.defaultPhoto

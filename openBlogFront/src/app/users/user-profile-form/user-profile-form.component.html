@@ -14,18 +14,13 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" [(ngModel)]="Email" placeholder="{{defaultEmail}}">
             </p>
-            <p>
-                <label for="password">Password</label>
-                <input type="password" name="password" [(ngModel)]="password"/>
-            </p>
         </div>
     </div>
     <div class="configUserRect" id="userDescritpionForm" >
         <p class="userDescritpionInput">
             <label for="description">Description</label>
-            <textarea type="text" id="description" [(ngModel)]="description" name="description"></textarea>
+            <textarea type="text" id="description" [(ngModel)]="description" name="description" placeholder="{{defaultDescription}}"></textarea>
         </p>
-        
     </div>
     <div class="buttonsZone" id="userDescritpionForm" >
         <button type="button" class="cancel_button">cancel</button>

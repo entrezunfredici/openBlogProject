@@ -11,8 +11,8 @@ import { postsSubject } from '../model/postsSubjects.model';
 })
 export class BlogService {
   private jsonUrl = 'apiurl.json';
-  private postUrl = 'http://localhost:8000/posts';
-  private subjectsUrl = 'http://localhost:8000/subjects';
+  private postUrl = 'http://openblog.blog:8000/Posts';
+  private subjectsUrl = 'http://openblog.blog:8000/subjects'
   
   constructor(private http: HttpClient) { }
   
