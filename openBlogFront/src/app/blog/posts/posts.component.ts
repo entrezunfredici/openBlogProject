@@ -122,11 +122,11 @@ export class PostsComponent {
     }
   }
 
-  profileClick(){
+  profileClick() {
     this.usersService.getUserById(this.posts.user.id).subscribe({
       next: (profile) => {
-        console.log('Profile:', profile)
-        this.router.navigate(['/users/thisUser/{{profile.id}}']);
+        console.log('Profile:', profile);
+        this.router.navigate([`/users/thisUser/${profile.id}`]); // Utilisation de template string
       },
       error: (error) => {
         console.error('Error fetching profile:', error);
